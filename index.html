@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
 
-<title>Untitled slides</title><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>workshop-slides slides</title><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 <!-- General and theme style sheets -->
 <link rel="stylesheet" href="https://unpkg.com/reveal.js@4.0.2/dist/reveal.css">
@@ -14382,557 +14382,11 @@ div.jp-OutputPrompt {
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 
 <div class="reveal">
-<div class="slides"><section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span>squeue
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
-           8516030      gpuq interact bollands  R      52:03      1 gpu-p100-n01
-           8515707      gpuq cryospar cryospar  R    2:26:51      1 gpu-p100-n01
-           8511988 interacti sys/dash    yan.a  R   19:37:45      1 sml-n03
-           8516092 interacti     work jackson.  R      43:34      1 sml-n01
-           8516157 interacti sys/dash   yang.e  R      11:29      1 sml-n01
-           8512054 interacti sys/dash baldoni.  R   19:10:15      1 sml-n01
-           8255255      long       MQ   dite.t PD       0:00      1 (QOSMaxJobsPerUserLimit)
-           8255253      long       MQ   dite.t  R 11-11:07:39      1 sml-n21
-           8501603      long UKBB_SHA robertso  R 2-02:53:33      1 med-n02
-           8511640      long   run.sh baldoni.  R   20:07:54      1 sml-n06
-8504853_[108-154%5   regular     nd_1     du.m PD       0:00      1 (JobArrayTaskLimit)
-           8502522   regular nf-rever robertso PD       0:00      1 (QOSMaxMemoryPerUser)
-           8502673   regular nf-rever robertso PD       0:00      1 (QOSMaxMemoryPerUser)
-           8503172   regular nf-rever robertso PD       0:00      1 (QOSMaxMemoryPerUser)
-           8503375   regular nf-rever robertso PD       0:00      1 (QOSMaxMemoryPerUser)
-           8503550   regular nf-rever robertso PD       0:00      1 (QOSMaxMemoryPerUser)
-           8503638   regular nf-rever robertso PD       0:00      1 (QOSMaxMemoryPerUser)
-           8503721   regular nf-rever robertso PD       0:00      1 (QOSMaxMemoryPerUser)
-           8503839   regular nf-rever robertso PD       0:00      1 (QOSMaxMemoryPerUser)
-           8503853   regular nf-rever robertso PD       0:00      1 (QOSMaxMemoryPerUser)
-           8503869   regular nf-rever robertso PD       0:00      1 (QOSMaxMemoryPerUser)
-           8503883   regular nf-rever robertso PD       0:00      1 (QOSMaxMemoryPerUser)
-           8503873   regular nf-rever robertso PD       0:00      1 (QOSMaxMemoryPerUser)
-           8503889   regular nf-rever robertso PD       0:00      1 (QOSMaxMemoryPerUser)
-           8503887   regular nf-rever robertso PD       0:00      1 (QOSMaxMemoryPerUser)
-           8503885   regular nf-rever robertso PD       0:00      1 (QOSMaxMemoryPerUser)
-           8503914   regular nf-rever robertso PD       0:00      1 (QOSMaxMemoryPerUser)
-           8503909   regular nf-rever robertso PD       0:00      1 (QOSMaxMemoryPerUser)
-8513244_[44-78%10]   regular     nd_3     du.m PD       0:00      1 (JobArrayTaskLimit)
-           8516330   regular SFRC0153 peningto PD       0:00      1 (BeginTime)
-           8516331   regular SFRC0120 peningto PD       0:00      1 (BeginTime)
-           8516256   regular The-big- thomas.e PD       0:00      1 (Priority)
-           8516255   regular The-big- thomas.e PD       0:00      1 (Priority)
- 8515778_[5-78%10]   regular     nd_2     du.m PD       0:00      1 (QOSMaxMemoryPerUser)
-           8516133   regular IR-IH-In  vijay.a PD       0:00      1 (Resources)
-  8516210_[10-200]   regular  tx-pipe baldoni. PD       0:00      1 (Priority)
-       8504853_107   regular     nd_1     du.m  R      20:07      1 med-n08
-       8504853_106   regular     nd_1     du.m  R      28:01      1 med-n26
-       8504853_105   regular     nd_1     du.m  R      53:06      1 med-n10
-       8504853_104   regular     nd_1     du.m  R    1:02:02      1 med-n27
-       8504853_103   regular     nd_1     du.m  R    1:04:00      1 sml-n11
-           8502505   regular nf-rever robertso  R      18:30      1 sml-n04
-           8502520   regular nf-rever robertso  R      17:40      1 sml-n06
-           8501974   regular nf-rever robertso  R    1:40:46      1 sml-n05
-           8501890   regular nf-rever robertso  R    1:45:11      1 sml-n14
-           8501724   regular nf-rever robertso  R    2:40:46      1 sml-n17
-           8502493   regular nf-rever robertso  R    1:19:30      1 med-n28
-           8501882   regular nf-rever robertso  R    2:04:43      1 sml-n09
-           8501889   regular nf-rever robertso  R    2:04:34      1 med-n17
-           8501716   regular nf-rever robertso  R    3:05:45      1 med-n10
-           8501771   regular nf-rever robertso  R    2:39:06      1 med-n05
-           8501714   regular nf-rever robertso  R    3:10:04      1 sml-n16
-           8501879   regular nf-rever robertso  R    2:23:54      1 sml-n16
-           8501818   regular nf-rever robertso  R    2:36:18      1 sml-n20
-        8504874_77   regular     nd_6     du.m  R    3:11:51      1 sml-n21
-        8504874_76   regular     nd_6     du.m  R    3:20:07      1 med-n04
-           8501705   regular nf-rever robertso  R    4:05:33      1 med-n16
-           8501704   regular nf-rever robertso  R    4:14:28      1 sml-n15
-           8501638   regular nf-rever robertso  R    5:05:06      1 sml-n19
-           8501633   regular nf-rever robertso  R    5:45:10      1 sml-n07
-           8501619   regular nf-rever robertso  R    6:41:10      1 sml-n21
-           8501608   regular nf-rever robertso  R    8:12:25      1 sml-n05
-           8501533   regular nf-rever robertso  R    9:19:33      1 sml-n08
-           8501515   regular nf-rever robertso  R   10:29:53      1 sml-n10
-           8516321   regular nf-seq_m   reid.j  R       3:38      1 med-n24
-           8516324   regular nf-haplo   reid.j  R       3:38      1 med-n14
-           8516313   regular nf-seq_m   reid.j  R       3:47      1 med-n10
-           8516316   regular nf-haplo   reid.j  R       3:47      1 sml-n17
-           8516318   regular nf-haplo   reid.j  R       3:47      1 med-n11
-           8516319   regular nf-seq_m   reid.j  R       3:47      1 med-n12
-           8516309   regular nf-seq_m   reid.j  R       3:56      1 sml-n09
-           8516310   regular nf-haplo   reid.j  R       3:56      1 sml-n11
-           8516299   regular nf-haplo   reid.j  R       4:05      1 sml-n11
-           8516302   regular nf-seq_m   reid.j  R       4:05      1 med-n21
-           8516304   regular nf-seq_m   reid.j  R       4:05      1 med-n29
-           8516298   regular nf-haplo   reid.j  R       4:08      1 sml-n18
-           8516289   regular nf-seq_m   reid.j  R       4:16      1 sml-n18
-           8516292   regular nf-seq_m   reid.j  R       4:16      1 sml-n09
-           8516294   regular nf-haplo   reid.j  R       4:16      1 sml-n10
-           8516295   regular nf-haplo   reid.j  R       4:16      1 sml-n10
-           8516296   regular nf-haplo   reid.j  R       4:16      1 sml-n12
-           8516283   regular nf-seq_m   reid.j  R       4:26      1 sml-n08
-           8501424   regular nf-rever robertso  R   12:32:23      1 sml-n18
-           8501394   regular nf-rever robertso  R   14:32:34      1 sml-n12
-           8501388   regular nf-rever robertso  R   14:56:32      1 sml-n11
-           8516126   regular flexiple     wu.s  R      33:02      1 sml-n22
-           8516127   regular flexiple     wu.s  R      33:02      1 sml-n22
-           8516124   regular flexiple     wu.s  R      33:05      1 sml-n22
-           8516125   regular flexiple     wu.s  R      33:05      1 sml-n22
-           8516123   regular flexiple     wu.s  R      33:08      1 sml-n24
-           8516122   regular flexiple     wu.s  R      33:12      1 sml-n24
-           8516120   regular flexiple     wu.s  R      33:18      1 sml-n23
-           8516119   regular flexiple     wu.s  R      33:22      1 sml-n23
-           8516118   regular flexiple     wu.s  R      33:25      1 sml-n21
-           8516117   regular flexiple     wu.s  R      33:28      1 sml-n03
-           8516116   regular flexiple     wu.s  R      33:31      1 sml-n14
-           8501280   regular nf-rever robertso  R   21:06:16      1 sml-n23
-           8501242   regular nf-rever robertso  R 1-03:28:24      1 sml-n03
-           8516140   regular new_0_NP   amin.n  R      17:00      1 sml-n07
-           8513757   regular nf-SeqrR  munro.j  R    9:05:15      1 sml-n15
-           8516020   regular landscap peningto  R    1:00:34      1 sml-n06
-           8515851   regular landscap peningto  R    1:14:09      1 lrg-n02
-           8516326   regular bionix-o peningto  R       0:21      1 med-n07
-        8513244_43   regular     nd_3     du.m  R      28:30      1 med-n08
-        8513244_42   regular     nd_3     du.m  R      30:17      1 med-n08
-        8513244_41   regular     nd_3     du.m  R      32:25      1 med-n21
-           8516144   regular   SymSim   wang.j  R      14:48      1 med-n05
-        8513244_40   regular     nd_3     du.m  R      41:53      1 med-n08
-        8513244_39   regular     nd_3     du.m  R    1:03:45      1 med-n08
-        8513244_38   regular     nd_3     du.m  R    1:40:37      1 med-n11
-        8513244_37   regular     nd_3     du.m  R    1:47:53      1 med-n03
-        8513244_36   regular     nd_3     du.m  R    1:48:32      1 sml-n12
-        8513244_35   regular     nd_3     du.m  R    2:00:15      1 sml-n02
-           8515631   regular    knitr freytag.  R    3:02:01      5 med-n[09,15,18,22-23]
-        8513244_33   regular     nd_3     du.m  R    2:32:28      1 med-n22
-           8515098   regular nf-haplo  sikta.n  R    4:40:06      1 sml-n02
-           8515068   regular nf-haplo  sikta.n  R    4:54:50      1 med-n10
-           8515004   regular nf-haplo  sikta.n  R    5:04:09      1 med-n15
-           8514982   regular nf-haplo  sikta.n  R    5:07:42      1 med-n08
-           8514913   regular nf-haplo  sikta.n  R    5:26:23      1 med-n05
-           8514824   regular nf-haplo  sikta.n  R    5:43:17      1 sml-n09
-           8515117   regular nf-haplo  sikta.n  R    4:25:11      1 sml-n23
-           8515260   regular nf-haplo  sikta.n  R    4:06:59      1 sml-n23
-           8515322   regular nf-haplo  sikta.n  R    3:36:27      1 sml-n09
-           8515315   regular nf-haplo  sikta.n  R    3:39:59      1 med-n05
-           8515297   regular nf-haplo  sikta.n  R    3:51:41      1 sml-n15
-           8516022   regular     wrap mohamed.  R      59:42      1 sml-n24
-           8515594   regular nf-haplo  sikta.n  R    3:19:19      1 sml-n08
-           8515747   regular nf-haplo  sikta.n  R    2:08:36      1 sml-n24
-           8515697   regular nf-haplo  sikta.n  R    2:36:52      1 sml-n19
-           8515982   regular nf-merge  sikta.n  R    1:07:59      1 sml-n15
-           8516169   regular nf-haplo  sikta.n  R      11:16      1 sml-n18
-           8516165   regular nf-haplo  sikta.n  R      11:19      1 sml-n19
-           8516166   regular nf-haplo  sikta.n  R      11:19      1 sml-n18
-           8516162   regular nf-haplo  sikta.n  R      11:22      1 sml-n16
-           8516163   regular nf-haplo  sikta.n  R      11:22      1 sml-n19
-           8516164   regular nf-haplo  sikta.n  R      11:22      1 sml-n19
-           8516161   regular nf-haplo  sikta.n  R      11:25      1 sml-n15
-           8516158   regular nf-haplo  sikta.n  R      11:26      1 sml-n17
-           8516159   regular nf-haplo  sikta.n  R      11:26      1 sml-n17
-           8516160   regular nf-haplo  sikta.n  R      11:26      1 sml-n17
-           8516156   regular nf-haplo  sikta.n  R      11:29      1 sml-n05
-           8516154   regular nf-seq_m  sikta.n  R      11:32      1 sml-n05
-           8516155   regular nf-haplo  sikta.n  R      11:32      1 sml-n06
-           8516153   regular nf-haplo  sikta.n  R      11:35      1 sml-n06
-           8516150   regular nf-haplo  sikta.n  R      11:38      1 sml-n06
-           8516148   regular nf-haplo  sikta.n  R      11:41      1 sml-n03
-           8516149   regular nf-haplo  sikta.n  R      11:41      1 sml-n06
-           8516147   regular nf-inser  sikta.n  R      11:44      1 sml-n04
-           8516146   regular nf-samto  sikta.n  R      11:47      1 sml-n23
-           8515875   regular nf-haplo  sikta.n  R    1:11:45      1 sml-n06
-           8515873   regular nf-haplo  sikta.n  R    1:11:48      1 sml-n07
-           8515869   regular nf-haplo  sikta.n  R    1:11:54      1 sml-n04
-           8515870   regular nf-haplo  sikta.n  R    1:11:54      1 sml-n03
-           8515868   regular nf-haplo  sikta.n  R    1:11:55      1 sml-n08
-           8515865   regular nf-haplo  sikta.n  R    1:11:57      1 sml-n22
-           8515866   regular nf-haplo  sikta.n  R    1:11:57      1 sml-n08
-           8515863   regular nf-haplo  sikta.n  R    1:12:00      1 sml-n23
-           8515859   regular nf-haplo  sikta.n  R    1:12:03      1 sml-n24
-           8515860   regular nf-haplo  sikta.n  R    1:12:03      1 sml-n24
-           8515861   regular nf-haplo  sikta.n  R    1:12:03      1 sml-n23
-           8515856   regular nf-seq_m  sikta.n  R    1:12:31      1 sml-n02
-           8515769   regular interact vespasia  R    2:01:37      1 lrg-n02
-           8516121   regular     IJob flensbur  R      33:05      1 med-n26
-         8515778_4   regular     nd_2     du.m  R      58:12      1 med-n08
-         8515778_3   regular     nd_2     du.m  R    1:00:26      1 lrg-n02
-         8515778_2   regular     nd_2     du.m  R    1:50:50      1 lrg-n02
-         8515778_1   regular     nd_2     du.m  R    1:50:56      1 lrg-n02
-       8513328_600   regular  tx-pipe baldoni.  R    5:28:16      1 med-n12
-       8513328_599   regular  tx-pipe baldoni.  R    5:28:47      1 med-n03
-       8513328_598   regular  tx-pipe baldoni.  R    5:30:52      1 med-n02
-       8513328_596   regular  tx-pipe baldoni.  R    5:33:27      1 med-n08
-       8513328_597   regular  tx-pipe baldoni.  R    5:33:27      1 med-n30
-       8513328_595   regular  tx-pipe baldoni.  R    5:34:27      1 lrg-n03
-       8513328_594   regular  tx-pipe baldoni.  R    5:34:38      1 med-n19
-       8513328_593   regular  tx-pipe baldoni.  R    5:35:42      1 med-n24
-       8513328_592   regular  tx-pipe baldoni.  R    5:36:46      1 med-n24
-       8513328_591   regular  tx-pipe baldoni.  R    5:37:16      1 med-n23
-       8513328_590   regular  tx-pipe baldoni.  R    5:37:27      1 med-n22
-       8513328_589   regular  tx-pipe baldoni.  R    5:37:47      1 med-n22
-       8513328_588   regular  tx-pipe baldoni.  R    5:38:18      1 med-n11
-       8513328_587   regular  tx-pipe baldoni.  R    5:38:27      1 lrg-n03
-       8513328_586   regular  tx-pipe baldoni.  R    5:38:48      1 lrg-n03
-       8513328_585   regular  tx-pipe baldoni.  R    5:39:52      1 lrg-n03
-       8513328_583   regular  tx-pipe baldoni.  R    5:40:56      1 med-n11
-       8513328_584   regular  tx-pipe baldoni.  R    5:40:56      1 lrg-n03
-       8513328_582   regular  tx-pipe baldoni.  R    5:41:57      1 med-n18
-       8513328_581   regular  tx-pipe baldoni.  R    5:42:58      1 med-n04
-       8513328_579   regular  tx-pipe baldoni.  R    5:43:29      1 med-n12
-       8513328_580   regular  tx-pipe baldoni.  R    5:43:29      1 med-n23
-       8513328_578   regular  tx-pipe baldoni.  R    5:45:27      1 lrg-n03
-       8513328_576   regular  tx-pipe baldoni.  R    5:46:06      1 med-n08
-       8513328_577   regular  tx-pipe baldoni.  R    5:46:06      1 lrg-n03
-       8513328_575   regular  tx-pipe baldoni.  R    5:47:07      1 med-n04
-           8516047   regular nf-fastq bennett.  R      48:44      1 sml-n23
-           8516049   regular nf-fastq bennett.  R      48:44      1 sml-n23
-           8516050   regular nf-fastq bennett.  R      48:44      1 sml-n23
-           8516051   regular nf-fastq bennett.  R      48:44      1 sml-n23
-           8516052   regular nf-fastq bennett.  R      48:44      1 sml-n23
-           8516053   regular nf-fastq bennett.  R      48:44      1 sml-n23
-           8516054   regular nf-fastq bennett.  R      48:44      1 sml-n23
-           8516055   regular nf-fastq bennett.  R      48:44      1 sml-n23
-           8516056   regular nf-fastq bennett.  R      48:44      1 sml-n17
-           8516057   regular nf-fastq bennett.  R      48:44      1 sml-n17
-           8516058   regular nf-fastq bennett.  R      48:44      1 sml-n17
-           8516059   regular nf-fastq bennett.  R      48:44      1 sml-n19
-           8516061   regular nf-fastq bennett.  R      48:44      1 sml-n18
-           8516042   regular nf-fastq bennett.  R      48:47      1 sml-n24
-           8516043   regular nf-fastq bennett.  R      48:47      1 sml-n24
-           8516045   regular nf-fastq bennett.  R      48:47      1 sml-n23
-           8516199   regular nf-qsort bennett.  R       8:47      1 sml-n04
-           8516200   regular nf-qsort bennett.  R       8:47      1 sml-n05
-           8516167   regular nf-qsort bennett.  R      11:16      1 sml-n22
-           8516168   regular nf-qsort bennett.  R      11:16      1 sml-n16
-           8516151   regular nf-qsort bennett.  R      11:35      1 sml-n24
-           8516152   regular nf-qsort bennett.  R      11:35      1 sml-n02
-           8516142   regular nf-qsort bennett.  R      15:08      1 sml-n24
-           8516143   regular nf-qsort bennett.  R      15:08      1 sml-n24
-           8516137   regular nf-qsort bennett.  R      18:07      1 sml-n23
-           8516138   regular nf-qsort bennett.  R      18:07      1 sml-n23
-           8516076   regular nf-fastp bennett.  R      48:05      1 sml-n14
-           8516077   regular nf-fastp bennett.  R      48:05      1 sml-n14
-           8516078   regular nf-fastp bennett.  R      48:05      1 sml-n14
-           8516079   regular nf-fastp bennett.  R      48:05      1 sml-n14
-           8516080   regular nf-fastp bennett.  R      48:05      1 sml-n14
-           8516082   regular nf-fastp bennett.  R      48:05      1 sml-n02
-           8516084   regular nf-fastp bennett.  R      48:05      1 sml-n02
-           8516085   regular nf-fastp bennett.  R      48:05      1 sml-n02
-           8516086   regular nf-fastp bennett.  R      48:05      1 sml-n02
-           8516071   regular nf-fastp bennett.  R      48:08      1 sml-n15
-           8516072   regular nf-fastp bennett.  R      48:08      1 sml-n15
-           8516073   regular nf-fastp bennett.  R      48:08      1 sml-n15
-           8516074   regular nf-fastp bennett.  R      48:08      1 sml-n14
-           8516075   regular nf-fastp bennett.  R      48:08      1 sml-n14
-           8515797   regular nf-haplo bennett.  R    1:47:59      1 sml-n16
-           8515798   regular nf-haplo bennett.  R    1:47:59      1 sml-n16
-           8515456   regular nf-haplo bennett.  R    3:46:49      1 med-n06
-       8513328_572   regular  tx-pipe baldoni.  R    5:48:27      1 med-n18
-       8513328_573   regular  tx-pipe baldoni.  R    5:48:27      1 lrg-n03
-       8513328_570   regular  tx-pipe baldoni.  R    5:51:43      1 lrg-n03
-       8513328_568   regular  tx-pipe baldoni.  R    5:56:27      1 lrg-n03
-       8513328_567   regular  tx-pipe baldoni.  R    5:56:45      1 lrg-n03
-       8513328_566   regular  tx-pipe baldoni.  R    5:58:45      1 lrg-n03
-       8513328_565   regular  tx-pipe baldoni.  R    6:00:47      1 lrg-n03
-       8513328_562   regular  tx-pipe baldoni.  R    6:04:27      1 lrg-n03
-       8513328_563   regular  tx-pipe baldoni.  R    6:04:27      1 lrg-n03
-       8513328_557   regular  tx-pipe baldoni.  R    6:10:27      1 med-n30
-       8513328_558   regular  tx-pipe baldoni.  R    6:10:27      1 med-n30
-       8513328_559   regular  tx-pipe baldoni.  R    6:10:27      1 med-n30
-       8513328_560   regular  tx-pipe baldoni.  R    6:10:27      1 med-n30
-       8513328_556   regular  tx-pipe baldoni.  R    6:13:05      1 med-n27
-       8513328_554   regular  tx-pipe baldoni.  R    6:22:37      1 med-n11
-           8516139   regular sys/dash farashi.  R      17:17      1 med-n19
-       8513328_552   regular  tx-pipe baldoni.  R    6:28:39      1 med-n27
-       8513328_551   regular  tx-pipe baldoni.  R    6:30:39      1 med-n14
-       8513328_550   regular  tx-pipe baldoni.  R    6:53:27      1 med-n20
-       8513328_548   regular  tx-pipe baldoni.  R    6:58:41      1 med-n09
-       8513328_549   regular  tx-pipe baldoni.  R    6:58:41      1 med-n18
-       8513328_546   regular  tx-pipe baldoni.  R    7:00:45      1 med-n18
-       8513328_545   regular  tx-pipe baldoni.  R    7:01:47      1 med-n09
-       8513328_544   regular  tx-pipe baldoni.  R    7:04:27      1 med-n18
-       8513328_543   regular  tx-pipe baldoni.  R    7:06:32      1 med-n15
-       8513328_541   regular  tx-pipe baldoni.  R    7:10:11      1 med-n25
-       8513328_540   regular  tx-pipe baldoni.  R    7:17:04      1 med-n19
-       8513328_539   regular  tx-pipe baldoni.  R    7:27:13      1 med-n09
-       8513328_537   regular  tx-pipe baldoni.  R    7:33:48      1 med-n20
-       8513328_536   regular  tx-pipe baldoni.  R    7:38:30      1 med-n09
-       8513328_533   regular  tx-pipe baldoni.  R    7:45:02      1 med-n23
-       8513328_532   regular  tx-pipe baldoni.  R    7:47:04      1 med-n30
-           8516113   regular  IR-RSEM  vijay.a  R      16:19      1 lrg-n04
-       8513328_531   regular  tx-pipe baldoni.  R    7:49:07      1 med-n21
-       8513328_527   regular  tx-pipe baldoni.  R    7:50:07      1 med-n12
-       8513328_528   regular  tx-pipe baldoni.  R    7:50:07      1 med-n12
-       8513328_529   regular  tx-pipe baldoni.  R    7:50:07      1 med-n12
-       8513328_525   regular  tx-pipe baldoni.  R    8:02:51      1 med-n16
-       8513328_522   regular  tx-pipe baldoni.  R    8:27:28      1 med-n19
-       8513328_521   regular  tx-pipe baldoni.  R    8:27:30      1 med-n02
-       8515329_999   regular  tx-pipe baldoni.  R      32:37      1 lrg-n02
-      8515329_1000   regular  tx-pipe baldoni.  R      32:37      1 lrg-n02
-       8515329_997   regular  tx-pipe baldoni.  R      34:22      1 lrg-n03
-       8515329_998   regular  tx-pipe baldoni.  R      34:22      1 lrg-n03
-       8515329_995   regular  tx-pipe baldoni.  R      35:54      1 med-n06
-       8515329_996   regular  tx-pipe baldoni.  R      35:54      1 med-n06
-       8515329_994   regular  tx-pipe baldoni.  R      36:16      1 med-n26
-       8513328_517   regular  tx-pipe baldoni.  R    8:35:18      1 med-n16
-       8513328_516   regular  tx-pipe baldoni.  R    8:35:51      1 med-n09
-       8515329_991   regular  tx-pipe baldoni.  R      39:26      1 med-n20
-       8513328_514   regular  tx-pipe baldoni.  R    8:39:58      1 med-n02
-       8513328_513   regular  tx-pipe baldoni.  R    8:40:23      1 med-n02
-       8515329_989   regular  tx-pipe baldoni.  R      45:59      1 med-n06
-       8515329_990   regular  tx-pipe baldoni.  R      45:59      1 med-n06
-           8514755   regular bionix-o   bedo.j  R    4:21:22      1 med-n24
-       8515329_988   regular  tx-pipe baldoni.  R      49:19      1 med-n05
-       8513328_509   regular  tx-pipe baldoni.  R    8:48:44      1 med-n28
-       8513328_507   regular  tx-pipe baldoni.  R    8:49:39      1 med-n07
-       8515329_986   regular  tx-pipe baldoni.  R    1:01:16      1 sml-n13
-       8513328_504   regular  tx-pipe baldoni.  R    9:02:25      1 med-n07
-       8515329_970   regular  tx-pipe baldoni.  R    1:06:22      1 sml-n24
-       8515329_971   regular  tx-pipe baldoni.  R    1:06:22      1 sml-n22
-       8515329_972   regular  tx-pipe baldoni.  R    1:06:22      1 sml-n13
-       8515329_973   regular  tx-pipe baldoni.  R    1:06:22      1 sml-n20
-       8515329_974   regular  tx-pipe baldoni.  R    1:06:22      1 sml-n03
-       8515329_975   regular  tx-pipe baldoni.  R    1:06:22      1 sml-n07
-       8515329_976   regular  tx-pipe baldoni.  R    1:06:22      1 sml-n17
-       8515329_977   regular  tx-pipe baldoni.  R    1:06:22      1 sml-n10
-       8515329_978   regular  tx-pipe baldoni.  R    1:06:22      1 sml-n15
-       8515329_979   regular  tx-pipe baldoni.  R    1:06:22      1 sml-n14
-       8515329_980   regular  tx-pipe baldoni.  R    1:06:22      1 med-n04
-       8515329_981   regular  tx-pipe baldoni.  R    1:06:22      1 med-n29
-       8515329_982   regular  tx-pipe baldoni.  R    1:06:22      1 med-n09
-       8515329_983   regular  tx-pipe baldoni.  R    1:06:22      1 med-n10
-       8515329_984   regular  tx-pipe baldoni.  R    1:06:22      1 med-n21
-       8515329_985   regular  tx-pipe baldoni.  R    1:06:22      1 med-n22
-       8515329_969   regular  tx-pipe baldoni.  R    1:07:26      1 med-n16
-       8515329_962   regular  tx-pipe baldoni.  R    1:08:04      1 sml-n04
-       8515329_963   regular  tx-pipe baldoni.  R    1:08:04      1 sml-n13
-       8515329_964   regular  tx-pipe baldoni.  R    1:08:04      1 sml-n22
-       8515329_965   regular  tx-pipe baldoni.  R    1:08:04      1 med-n29
-       8515329_966   regular  tx-pipe baldoni.  R    1:08:04      1 med-n29
-       8515329_967   regular  tx-pipe baldoni.  R    1:08:04      1 med-n29
-       8515329_968   regular  tx-pipe baldoni.  R    1:08:04      1 med-n29
-       8513328_502   regular  tx-pipe baldoni.  R    9:03:52      1 med-n26
-       8515329_951   regular  tx-pipe baldoni.  R    1:08:19      1 sml-n18
-       8515329_952   regular  tx-pipe baldoni.  R    1:08:19      1 sml-n19
-       8515329_953   regular  tx-pipe baldoni.  R    1:08:19      1 med-n04
-       8515329_954   regular  tx-pipe baldoni.  R    1:08:19      1 med-n06
-       8515329_955   regular  tx-pipe baldoni.  R    1:08:19      1 med-n22
-       8515329_956   regular  tx-pipe baldoni.  R    1:08:19      1 med-n09
-       8515329_957   regular  tx-pipe baldoni.  R    1:08:19      1 med-n10
-       8515329_958   regular  tx-pipe baldoni.  R    1:08:19      1 med-n24
-       8515329_959   regular  tx-pipe baldoni.  R    1:08:19      1 med-n25
-       8515329_960   regular  tx-pipe baldoni.  R    1:08:19      1 med-n26
-       8515329_961   regular  tx-pipe baldoni.  R    1:08:19      1 lrg-n03
-       8515329_930   regular  tx-pipe baldoni.  R    1:08:22      1 med-n05
-       8515329_931   regular  tx-pipe baldoni.  R    1:08:22      1 med-n23
-       8515329_932   regular  tx-pipe baldoni.  R    1:08:22      1 med-n30
-       8515329_933   regular  tx-pipe baldoni.  R    1:08:22      1 med-n02
-       8515329_934   regular  tx-pipe baldoni.  R    1:08:22      1 med-n03
-       8515329_935   regular  tx-pipe baldoni.  R    1:08:22      1 med-n07
-       8515329_936   regular  tx-pipe baldoni.  R    1:08:22      1 med-n08
-       8515329_937   regular  tx-pipe baldoni.  R    1:08:22      1 med-n27
-       8515329_938   regular  tx-pipe baldoni.  R    1:08:22      1 med-n28
-       8515329_939   regular  tx-pipe baldoni.  R    1:08:22      1 med-n11
-       8515329_940   regular  tx-pipe baldoni.  R    1:08:22      1 med-n12
-       8515329_941   regular  tx-pipe baldoni.  R    1:08:22      1 med-n13
-       8515329_942   regular  tx-pipe baldoni.  R    1:08:22      1 med-n14
-       8515329_943   regular  tx-pipe baldoni.  R    1:08:22      1 med-n15
-       8515329_944   regular  tx-pipe baldoni.  R    1:08:22      1 med-n17
-       8515329_945   regular  tx-pipe baldoni.  R    1:08:22      1 med-n18
-       8515329_946   regular  tx-pipe baldoni.  R    1:08:22      1 med-n19
-       8515329_947   regular  tx-pipe baldoni.  R    1:08:22      1 med-n20
-       8515329_948   regular  tx-pipe baldoni.  R    1:08:22      1 med-n21
-       8515329_949   regular  tx-pipe baldoni.  R    1:08:22      1 lrg-n02
-       8515329_929   regular  tx-pipe baldoni.  R    1:08:41      1 med-n07
-       8513328_501   regular  tx-pipe baldoni.  R    9:10:07      1 med-n15
-       8515329_928   regular  tx-pipe baldoni.  R    1:17:47      1 med-n14
-       8515329_926   regular  tx-pipe baldoni.  R    1:19:30      1 med-n02
-       8515329_925   regular  tx-pipe baldoni.  R    1:20:26      1 med-n23
-           8514754   regular bionix-o   bedo.j  R    4:55:25      1 med-n14
-       8515329_924   regular  tx-pipe baldoni.  R    1:23:31      1 sml-n20
-       8515329_923   regular  tx-pipe baldoni.  R    1:23:34      1 med-n05
-       8515329_922   regular  tx-pipe baldoni.  R    1:24:37      1 med-n13
-       8515329_921   regular  tx-pipe baldoni.  R    1:26:27      1 sml-n24
-       8515329_920   regular  tx-pipe baldoni.  R    1:27:00      1 med-n05
-       8515329_919   regular  tx-pipe baldoni.  R    1:33:28      1 med-n05
-       8515329_918   regular  tx-pipe baldoni.  R    1:33:35      1 med-n05
-       8512384_399   regular  tx-pipe baldoni.  R   13:37:31      1 med-n20
-       8512384_400   regular  tx-pipe baldoni.  R   13:37:31      1 med-n20
-       8515329_912   regular  tx-pipe baldoni.  R    1:41:01      1 lrg-n02
-       8515329_913   regular  tx-pipe baldoni.  R    1:41:01      1 lrg-n02
-       8515329_914   regular  tx-pipe baldoni.  R    1:41:01      1 lrg-n02
-       8515329_915   regular  tx-pipe baldoni.  R    1:41:01      1 lrg-n02
-       8515329_916   regular  tx-pipe baldoni.  R    1:41:01      1 lrg-n02
-       8515329_917   regular  tx-pipe baldoni.  R    1:41:01      1 lrg-n02
-       8512384_391   regular  tx-pipe baldoni.  R   13:39:50      1 med-n26
-       8515329_911   regular  tx-pipe baldoni.  R    1:45:08      1 med-n02
-       8515329_910   regular  tx-pipe baldoni.  R    1:46:59      1 med-n07
-       8515329_906   regular  tx-pipe baldoni.  R    1:47:03      1 med-n06
-       8515329_907   regular  tx-pipe baldoni.  R    1:47:03      1 med-n06
-       8515329_908   regular  tx-pipe baldoni.  R    1:47:03      1 med-n06
-       8515329_909   regular  tx-pipe baldoni.  R    1:47:03      1 med-n06
-       8512384_384   regular  tx-pipe baldoni.  R   13:47:18      1 med-n25
-           8514753   regular bionix-o   bedo.j  R    5:19:03      1 med-n03
-       8515329_904   regular  tx-pipe baldoni.  R    1:48:35      1 med-n22
-       8515329_903   regular  tx-pipe baldoni.  R    1:48:54      1 med-n07
-       8515329_901   regular  tx-pipe baldoni.  R    1:52:47      1 med-n13
-       8513328_480   regular  tx-pipe baldoni.  R    9:49:56      1 med-n13
-       8515329_900   regular  tx-pipe baldoni.  R    1:56:26      1 med-n07
-       8515329_899   regular  tx-pipe baldoni.  R    1:58:38      1 med-n30
-       8515329_898   regular  tx-pipe baldoni.  R    2:03:30      1 med-n13
-       8515329_897   regular  tx-pipe baldoni.  R    2:04:02      1 med-n15
-       8515329_896   regular  tx-pipe baldoni.  R    2:04:34      1 med-n27
-       8515329_895   regular  tx-pipe baldoni.  R    2:05:17      1 med-n09
-       8512384_357   regular  tx-pipe baldoni.  R   14:07:58      1 lrg-n02
-       8515329_894   regular  tx-pipe baldoni.  R    2:11:47      1 med-n25
-       8515329_893   regular  tx-pipe baldoni.  R    2:12:04      1 med-n26
-       8513328_469   regular  tx-pipe baldoni.  R   10:09:47      1 med-n10
-       8515329_892   regular  tx-pipe baldoni.  R    2:15:26      1 lrg-n02
-           8515630   regular bionix-b   bedo.j  R    3:06:04      1 sml-n04
-       8515329_891   regular  tx-pipe baldoni.  R    2:21:04      1 med-n21
-       8515329_889   regular  tx-pipe baldoni.  R    2:22:52      1 med-n29
-       8513328_464   regular  tx-pipe baldoni.  R   10:23:06      1 med-n27
-       8515329_888   regular  tx-pipe baldoni.  R    2:24:22      1 lrg-n02
-       8515329_887   regular  tx-pipe baldoni.  R    2:25:32      1 med-n13
-       8515329_886   regular  tx-pipe baldoni.  R    2:26:30      1 lrg-n03
-       8515329_885   regular  tx-pipe baldoni.  R    2:26:36      1 med-n28
-       8515329_884   regular  tx-pipe baldoni.  R    2:26:40      1 med-n05
-       8515329_883   regular  tx-pipe baldoni.  R    2:28:37      1 med-n24
-       8515329_882   regular  tx-pipe baldoni.  R    2:29:07      1 med-n12
-       8515329_881   regular  tx-pipe baldoni.  R    2:30:20      1 med-n10
-       8515329_880   regular  tx-pipe baldoni.  R    2:31:34      1 lrg-n02
-       8515329_879   regular  tx-pipe baldoni.  R    2:31:37      1 med-n12
-       8515329_878   regular  tx-pipe baldoni.  R    2:32:33      1 med-n18
-           8516103   regular bionix-g   bedo.j  R      36:19      1 med-n20
-           8516104   regular bionix-g   bedo.j  R      36:19      1 med-n20
-           8516105   regular bionix-g   bedo.j  R      36:19      1 med-n25
-           8516106   regular bionix-g   bedo.j  R      36:19      1 med-n25
-           8516107   regular bionix-g   bedo.j  R      36:19      1 lrg-n02
-           8516102   regular bionix-g   bedo.j  R      36:22      1 med-n10
-           8516098   regular bionix-g   bedo.j  R      36:25      1 med-n27
-           8516099   regular bionix-g   bedo.j  R      36:25      1 med-n03
-           8516100   regular bionix-g   bedo.j  R      36:25      1 med-n04
-           8516101   regular bionix-g   bedo.j  R      36:25      1 lrg-n03
-           8516214   regular bionix-x   bedo.j  R       7:16      1 sml-n02
-           8516134   regular bionix-a   bedo.j  R      23:47      1 sml-n13
-           8515612   regular bionix-e   bedo.j  R    3:14:04      1 med-n03
-           8515295   regular bionix-s   bedo.j  R    4:16:45      1 sml-n10
-           8512913   regular bionix-a   bedo.j  R   13:53:39      1 med-n03
-       8515329_877   regular  tx-pipe baldoni.  R    2:39:48      1 sml-n09
-       8515329_876   regular  tx-pipe baldoni.  R    2:42:19      1 med-n25
-       8515329_875   regular  tx-pipe baldoni.  R    2:52:27      1 med-n23
-       8515329_874   regular  tx-pipe baldoni.  R    2:53:57      1 med-n02
-       8515329_873   regular  tx-pipe baldoni.  R    2:54:09      1 med-n28
-       8515329_872   regular  tx-pipe baldoni.  R    2:58:43      1 med-n19
-       8515329_871   regular  tx-pipe baldoni.  R    2:58:50      1 med-n07
-       8515329_870   regular  tx-pipe baldoni.  R    2:58:59      1 med-n03
-       8515329_869   regular  tx-pipe baldoni.  R    3:08:34      1 med-n04
-       8515329_867   regular  tx-pipe baldoni.  R    3:11:28      1 med-n18
-       8515329_865   regular  tx-pipe baldoni.  R    3:13:00      1 med-n04
-       8515329_863   regular  tx-pipe baldoni.  R    3:15:18      1 med-n15
-       8515329_862   regular  tx-pipe baldoni.  R    3:16:31      1 med-n27
-       8515329_861   regular  tx-pipe baldoni.  R    3:21:13      1 med-n04
-       8515329_860   regular  tx-pipe baldoni.  R    3:26:05      1 med-n04
-       8515329_859   regular  tx-pipe baldoni.  R    3:33:17      1 med-n17
-       8515329_858   regular  tx-pipe baldoni.  R    3:34:08      1 med-n22
-       8515329_857   regular  tx-pipe baldoni.  R    3:35:43      1 med-n22
-       8515329_856   regular  tx-pipe baldoni.  R    3:39:08      1 med-n16
-       8515329_848   regular  tx-pipe baldoni.  R    3:40:21      1 med-n20
-       8515329_849   regular  tx-pipe baldoni.  R    3:40:21      1 med-n21
-       8515329_850   regular  tx-pipe baldoni.  R    3:40:21      1 med-n22
-       8515329_851   regular  tx-pipe baldoni.  R    3:40:21      1 med-n23
-       8515329_852   regular  tx-pipe baldoni.  R    3:40:21      1 med-n24
-       8515329_853   regular  tx-pipe baldoni.  R    3:40:21      1 med-n25
-       8515329_854   regular  tx-pipe baldoni.  R    3:40:21      1 med-n26
-       8515329_855   regular  tx-pipe baldoni.  R    3:40:21      1 lrg-n03
-       8515329_842   regular  tx-pipe baldoni.  R    3:40:22      1 med-n07
-       8515329_843   regular  tx-pipe baldoni.  R    3:40:22      1 med-n09
-       8515329_844   regular  tx-pipe baldoni.  R    3:40:22      1 med-n13
-       8515329_845   regular  tx-pipe baldoni.  R    3:40:22      1 med-n14
-       8515329_846   regular  tx-pipe baldoni.  R    3:40:22      1 med-n17
-       8515329_847   regular  tx-pipe baldoni.  R    3:40:22      1 med-n18
-       8515329_839   regular  tx-pipe baldoni.  R    3:40:25      1 med-n15
-       8515329_840   regular  tx-pipe baldoni.  R    3:40:25      1 med-n28
-       8515329_841   regular  tx-pipe baldoni.  R    3:40:25      1 med-n29
-       8515329_838   regular  tx-pipe baldoni.  R    3:40:26      1 lrg-n02
-       8515329_836   regular  tx-pipe baldoni.  R    3:42:04      1 med-n29
-       8515329_835   regular  tx-pipe baldoni.  R    3:43:01      1 med-n16
-       8515329_834   regular  tx-pipe baldoni.  R    3:44:22      1 med-n21
-       8515329_831   regular  tx-pipe baldoni.  R    3:44:25      1 med-n17
-       8515329_832   regular  tx-pipe baldoni.  R    3:44:25      1 med-n20
-       8515329_833   regular  tx-pipe baldoni.  R    3:44:25      1 lrg-n02
-       8515329_830   regular  tx-pipe baldoni.  R    3:45:26      1 med-n16
-       8515329_828   regular  tx-pipe baldoni.  R    3:45:38      1 med-n28
-       8515329_829   regular  tx-pipe baldoni.  R    3:45:38      1 med-n29
-       8515329_825   regular  tx-pipe baldoni.  R    3:45:41      1 med-n13
-       8515329_826   regular  tx-pipe baldoni.  R    3:45:41      1 med-n17
-       8515329_827   regular  tx-pipe baldoni.  R    3:45:41      1 med-n27
-       8515329_824   regular  tx-pipe baldoni.  R    3:48:00      1 med-n14
-       8515329_823   regular  tx-pipe baldoni.  R    3:57:47      1 med-n11
-       8515329_822   regular  tx-pipe baldoni.  R    3:58:53      1 med-n27
-       8515329_820   regular  tx-pipe baldoni.  R    3:59:58      1 med-n28
-       8515329_819   regular  tx-pipe baldoni.  R    4:00:38      1 med-n23
-       8515329_818   regular  tx-pipe baldoni.  R    4:02:16      1 med-n11
-         8516210_9   regular  tx-pipe baldoni.  R       6:16      1 med-n28
-         8516210_8   regular  tx-pipe baldoni.  R       6:46      1 med-n10
-         8516210_4   regular  tx-pipe baldoni.  R       7:16      1 med-n17
-         8516210_5   regular  tx-pipe baldoni.  R       7:16      1 med-n17
-         8516210_6   regular  tx-pipe baldoni.  R       7:16      1 med-n17
-         8516210_7   regular  tx-pipe baldoni.  R       7:16      1 med-n17
-         8516210_1   regular  tx-pipe baldoni.  R       7:46      1 med-n11
-         8516210_2   regular  tx-pipe baldoni.  R       7:46      1 med-n15
-         8516210_3   regular  tx-pipe baldoni.  R       7:46      1 lrg-n02
-       8515329_817   regular  tx-pipe baldoni.  R    4:03:48      1 med-n11
-       8515329_816   regular  tx-pipe baldoni.  R    4:07:40      1 med-n25
-       8515329_801   regular  tx-pipe baldoni.  R    4:07:52      1 med-n05
-       8515329_802   regular  tx-pipe baldoni.  R    4:07:52      1 med-n10
-       8515329_803   regular  tx-pipe baldoni.  R    4:07:52      1 med-n19
-       8515329_804   regular  tx-pipe baldoni.  R    4:07:52      1 med-n23
-       8515329_805   regular  tx-pipe baldoni.  R    4:07:52      1 med-n28
-       8515329_806   regular  tx-pipe baldoni.  R    4:07:52      1 med-n30
-       8515329_807   regular  tx-pipe baldoni.  R    4:07:52      1 med-n12
-       8515329_808   regular  tx-pipe baldoni.  R    4:07:52      1 med-n13
-       8515329_809   regular  tx-pipe baldoni.  R    4:07:52      1 med-n21
-       8515329_810   regular  tx-pipe baldoni.  R    4:07:52      1 med-n21
-       8515329_811   regular  tx-pipe baldoni.  R    4:07:52      1 med-n15
-       8515329_812   regular  tx-pipe baldoni.  R    4:07:52      1 med-n16
-       8515329_813   regular  tx-pipe baldoni.  R    4:07:52      1 med-n16
-       8515329_814   regular  tx-pipe baldoni.  R    4:07:52      1 med-n26
-       8515329_815   regular  tx-pipe baldoni.  R    4:07:52      1 med-n25
-       8513328_437   regular  tx-pipe baldoni.  R   12:06:59      1 med-n16
-       8513328_425   regular  tx-pipe baldoni.  R   12:07:31      1 med-n10
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div></section></section><section><section>
+<div class="slides"><section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Intermediate-Slurm-on-Milton">Intermediate Slurm on Milton<a class="anchor-link" href="#Intermediate-Slurm-on-Milton">&#182;</a></h1><h3 id="Delivered-by-WEHI-Research-Computing-Platform">Delivered by WEHI Research Computing Platform<a class="anchor-link" href="#Delivered-by-WEHI-Research-Computing-Platform">&#182;</a></h3><p><pre>Edward Yang    Michael Milton    Julie Iskander</pre><br /></p>
-<p><img src="Downloads/1200px-Slurm_logo.svg.png" alt="Slurm" width="100"/><img src="Downloads/milton.png" alt="Milton Mascot" width="100"/><img src="Downloads/WEHI_RGB_logo.png" alt="WEHI logo" width="200"/></p>
+<p><img src="static/1200px-Slurm_logo.svg.png" alt="Slurm" width="100"/><img src="static/milton.png" alt="Milton Mascot" width="100"/><img src="static/WEHI_RGB_logo.png" alt="WEHI logo" width="200"/></p>
 
 </div>
 </div></section></section><section><section>
@@ -14944,7 +14398,12 @@ div.jp-OutputPrompt {
 <li>Mostly code in Fortran, occasionally Python</li>
 <li>I use HPC to simulate fluid and granular flows</li>
 </ul>
-<h2 id="How-about-you?">How about you?<a class="anchor-link" href="#How-about-you?">&#182;</a></h2>
+<h2 id="How-about-you?">How about you?<a class="anchor-link" href="#How-about-you?">&#182;</a></h2><ul>
+<li>name</li>
+<li>How you use Milton's HPC</li>
+<li>Your coffee/tea order</li>
+</ul>
+
 </div>
 </div></section></section><section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
@@ -14988,8 +14447,9 @@ div.jp-OutputPrompt {
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Agenda-for-Today">Agenda for Today<a class="anchor-link" href="#Agenda-for-Today">&#182;</a></h2><p>12:00 - 12:30&emsp;<span style="color:blue">Introduction & Housekeeping</span></p>
 <p>12:30 - 13:00&emsp;Lunch</p>
-<p>13:00 - 13:30&emsp;Understanding your jobs and the job queue</p>
-<p>13:30 - 14:00&emsp;Profiling your jobs</p>
+<p>13:00 - 13:30&emsp;Laying the groundwork: nodes, tasks and other Slurm terminology</p>
+<p>13:30 - 14:00&emsp;Understanding your jobs and the job queue</p>
+<p>13:30 - 14:00&emsp;Basic profiling of your jobs</p>
 <p>14:00 - 14:30&emsp;Slurm scripting features</p>
 <p>14:30 - 15:00&emsp;Embarrarsingly parallel examples</p>
 <p>15:00 - 15:30&emsp;R batchtools</p>
@@ -15045,42 +14505,63 @@ rap.wehi.edu.au</p>
 </div></section></section><section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Understanding-Your-Jobs-and-the-Job-Queue">Understanding Your Jobs and the Job Queue<a class="anchor-link" href="#Understanding-Your-Jobs-and-the-Job-Queue">&#182;</a></h2><p><em>knowledge is power</em></p>
-<h3 id="Building-on-the-basics:-squeue">Building on the basics: <code>squeue</code><a class="anchor-link" href="#Building-on-the-basics:-squeue">&#182;</a></h3><p><code>squeue</code> shows everyone's job in the queue (passing <code>-u &lt;username&gt;</code>) shows only <code>&lt;username&gt;</code>'s jobs.</p>
-
-<pre><code>$ squeue
-             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
-           8501639 gpuq_inte sys/dash birkinsh  R      42:18      1 gpu-a10-n01
-           8501778 interacti sys/dash whitfiel  R       1:28      1 sml-n01
-           8498244 interacti       MM   yuchen  R   20:02:01      1 med-n02
-           8498615 interacti sys/dash baldoni.  R   17:53:25      1 sml-n01
-           8501737   regular bionix-m   bedo.j  R      19:18      1 sml-n06
-           8501738   regular bionix-m   bedo.j  R      19:18      1 sml-n19
-           8501739   regular bionix-m   bedo.j  R      19:18      1 sml-n14
-           8501755   regular        R baldoni.  R      10:34      1 med-n03
-           ...</code></pre>
-<p>Getting a bit more: <code>squeue --long</code> makes things more legible adds the "time_limit" column.</p>
-
-<pre><code>$ squeue --long
-Tue Oct 18 09:35:35 2022
-             JOBID PARTITION     NAME     USER    STATE       TIME TIME_LIMI  NODES NODELIST(REASON)
-           8501639 gpuq_inte sys/dash birkinsh  RUNNING      48:35   8:00:00      1 gpu-a10-n01
-           8501788 interacti sys/dash  kershaw  RUNNING       2:08   5:00:00      1 med-n03
-           8501778 interacti sys/dash whitfiel  RUNNING       7:45   5:00:00      1 sml-n01
-           8498244 interacti       MM   yuchen  RUNNING   20:08:18 1-00:00:00      1 med-n02
-           8498615 interacti sys/dash baldoni.  RUNNING   17:59:42 1-00:00:00      1 sml-n01
-           8255255      long       MQ   dite.t  PENDING       0:00 12-12:00:00      1 (QOSMaxJobsPerUserLimit)
-           8255253      long       MQ   dite.t  RUNNING 9-09:13:41 12-12:00:00      1 sml-n21
-...</code></pre>
+<h2 id="Laying-the-Groundwork:-Nodes,-Tasks-and-Other-Slurm-Stuff">Laying the Groundwork: Nodes, Tasks and Other Slurm Stuff<a class="anchor-link" href="#Laying-the-Groundwork:-Nodes,-Tasks-and-Other-Slurm-Stuff">&#182;</a></h2><h3 id="What-are-Nodes?">What are Nodes?<a class="anchor-link" href="#What-are-Nodes?">&#182;</a></h3><p>Nodes are essentially standalone computers with their own CPU cores, RAM, local storage, and maybe GPUs.</p>
+<p>HPC clusters (or just clusters) will consist of multiple nodes connected together through a (sometimes fast) network.</p>
+<p>Nodes cannot collaborate on problems unless they are running a programmed designed that way. An analogy would be like trying to issue commands from your PC, but trying to use your colleagues CPUs. It's possible, but needs a special program/protocol to do so!</p>
+<p>Most programs in bioinformatics, health sciences, and statistics (that I know of) aren't setup to have multiple nodes cooperate. Notable exceptions are Tensorflow and Py-Torch, Relion, and Gromacs.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Laying-the-Groundwork:-Nodes,-Tasks-and-Other-Slurm-Stuff-cont.">Laying the Groundwork: Nodes, Tasks and Other Slurm Stuff cont.<a class="anchor-link" href="#Laying-the-Groundwork:-Nodes,-Tasks-and-Other-Slurm-Stuff-cont.">&#182;</a></h2><h3 id="What-are-tasks?">What are tasks?<a class="anchor-link" href="#What-are-tasks?">&#182;</a></h3><p>Tasks are a collection of resources (CPU cores, GPUs) expected to perform the same "task", or used by a single program e.g., via threads, Python multiprocessing, or OpenMP.</p>
+
+</div>
+</div><div class="fragment">
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>A task can only be given resources co-located on a node. Multiple tasks requested by <code>sbatch</code> or <code>salloc</code> can be spread across multiple nodes (unless <code>--nodes=</code> is specified).</p>
+
+</div>
+</div></div><div class="fragment">
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><code>srun</code> will use the number of tasks requested by <code>salloc</code> or <code>sbatch</code> to run <code>ntasks</code> instances of the same command/script/program. e.g.,</p>
+<p><code>srun echo hello world</code> will run <code>echo</code> equal to the number of tasks requested.</p>
+
+</div>
+</div></div><div class="fragment">
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>This was designed with "traditional" HPC in mind, where multiple instances of the same program would be created, and these instanced could cooperate (thanks to MPI).</p>
+
+</div>
+</div></div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="why-ntasks-and--cpus-per-task-then?">why <code>ntasks</code> and  <code>cpus-per-task</code> then?<a class="anchor-link" href="#why-ntasks-and--cpus-per-task-then?">&#182;</a></h3><p>This is because some "traditional" HPC would use multiprocessing (usually through OpenMP) where each program instance could utilize multiple cores.</p>
+
+</div>
+</div><div class="fragment">
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Most data science, statistics, bionformatics, health-science work will use <code>--ntasks=1</code>, and using <code>--cpus-per-task</code> . If you see/hear anything to do with "distributed" or MPI (e.g. distributed ML), you may want to change that.</p>
+
+</div>
+</div></div></section></section><section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Monitoring-Your-Jobs-and-the-Job-Queue">Monitoring Your Jobs and the Job Queue<a class="anchor-link" href="#Monitoring-Your-Jobs-and-the-Job-Queue">&#182;</a></h2><p><em>knowledge is power</em></p>
+<h3 id="Building-on-the-basics:-squeue">Building on the basics: <code>squeue</code><a class="anchor-link" href="#Building-on-the-basics:-squeue">&#182;</a></h3><p><code>squeue</code> shows everyone's job in the queue (passing <code>-u &lt;username&gt;</code>) shows only <code>&lt;username&gt;</code>'s jobs.</p>
+
+</div>
+</div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span>squeue
+<div class=" highlight hl-bash"><pre><span></span>squeue <span class="p">|</span> head -n <span class="m">5</span>
 </pre></div>
 
      </div>
@@ -15100,7 +14581,507 @@ Tue Oct 18 09:35:35 2022
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>bash: squeue: command not found
+<pre>             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+           8516030      gpuq interact bollands  R    1:30:11      1 gpu-p100-n01
+           8515707      gpuq cryospar cryospar  R    3:04:59      1 gpu-p100-n01
+           8511988 interacti sys/dash    yan.a  R   20:15:53      1 sml-n03
+           8516092 interacti     work jackson.  R    1:21:42      1 sml-n01
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div></div><div class="fragment">
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Getting a bit more: <code>squeue --long</code> makes things more legible adds the "time_limit" column.</p>
+
+</div>
+</div></div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-bash"><pre><span></span>squeue --long <span class="p">|</span> head -n <span class="m">5</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Thu Oct 20 12:07:43 2022
+             JOBID PARTITION     NAME     USER    STATE       TIME TIME_LIMI  NODES NODELIST(REASON)
+           8516030      gpuq interact bollands  RUNNING    1:30:13   8:00:00      1 gpu-p100-n01
+           8515707      gpuq cryospar cryospar  RUNNING    3:05:01 2-00:00:00      1 gpu-p100-n01
+           8511988 interacti sys/dash    yan.a  RUNNING   20:15:55 1-00:00:00      1 sml-n03
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div></div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Monitoring-Your-Jobs-and-the-Job-Queue-cont.">Monitoring Your Jobs and the Job Queue cont.<a class="anchor-link" href="#Monitoring-Your-Jobs-and-the-Job-Queue-cont.">&#182;</a></h2><p>But what if we want <em>even more</em> information?</p>
+<p>We have to make use of the formatting options!</p>
+
+<pre><code>$ squeue --Format field1,field2,...</code></pre>
+<p>OR use the environment variable <code>SQUEUE_FORMAT2</code>. Useful fields:</p>
+<table>
+<thead><tr>
+<th style="text-align:left">Resources related</th>
+<th style="text-align:left">Time related</th>
+<th style="text-align:left">Scheduling</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>NumCPUs</code></td>
+<td style="text-align:left"><code>starttime</code></td>
+<td style="text-align:left"><code>JobId</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>NumNodes</code></td>
+<td style="text-align:left"><code>submittime</code></td>
+<td style="text-align:left"><code>name</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>minmemory</code></td>
+<td style="text-align:left"><code>pendingtime</code></td>
+<td style="text-align:left"><code>partition</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>tres-alloc</code></td>
+<td style="text-align:left"><code>timelimit</code></td>
+<td style="text-align:left"><code>priority</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>minmemory</code></td>
+<td style="text-align:left"><code>timeleft</code></td>
+<td style="text-align:left"><code>reasonlist</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>timeused</code></td>
+<td style="text-align:left"><code>workdir</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>state</code></td>
+</tr>
+</tbody>
+</table>
+<p>You can always use <code>man squeue</code> to see the entire list of options.</p>
+<p>So you don't have to type out the fields, I recommend aliasing the the command with your fields of choice in <code>~/.bashrc</code> e.g.</p>
+
+</div>
+</div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Monitoring-Your-Jobs-and-the-Job-Queue-cont.">Monitoring Your Jobs and the Job Queue cont.<a class="anchor-link" href="#Monitoring-Your-Jobs-and-the-Job-Queue-cont.">&#182;</a></h2>
+</div>
+</div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-bash"><pre><span></span><span class="nb">alias</span> <span class="nv">sqv</span><span class="o">=</span><span class="s2">&quot;squeue --Format=jobid:8,name:6&#39; &#39;,partition:10&#39; &#39;,statecompact:3,tres-alloc:60,timelimit:12,timeleft:12&quot;</span>
+sqv <span class="p">|</span> head -n <span class="m">5</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>JOBID   NAME   PARTITION  ST TRES_ALLOC                                                  TIME_LIMIT  TIME_LEFT   
+8517002 R      bigmem     R  cpu=22,mem=88G,node=1,billing=720984                        1-00:00:00  23:35:18    
+8516030 intera gpuq       R  cpu=2,mem=20G,node=1,billing=44,gres/gpu=1,gres/gpu:p100=1  8:00:00     4:43:00     
+8515707 cryosp gpuq       R  cpu=8,mem=17G,node=1,billing=44,gres/gpu=1,gres/gpu:p100=1  2-00:00:00  1-19:08:12  
+8511988 sys/da interactiv R  cpu=8,mem=16G,node=1,billing=112                            1-00:00:00  1:57:18     
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div></div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[28]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-bash"><pre><span></span>sqv -u bedo.j <span class="p">|</span> head -n <span class="m">5</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>JOBID   NAME   PARTITION  ST TRES_ALLOC                                                  TIME_LIMIT  TIME_LEFT   
+8516851 bionix regular    PD cpu=24,mem=90G,node=1,billing=204                           2-00:00:00  2-00:00:00  
+8516850 bionix regular    PD cpu=24,mem=90G,node=1,billing=204                           2-00:00:00  2-00:00:00  
+8516849 bionix regular    PD cpu=24,mem=90G,node=1,billing=204                           2-00:00:00  2-00:00:00  
+8516848 bionix regular    PD cpu=24,mem=90G,node=1,billing=204                           2-00:00:00  2-00:00:00  
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div></div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Monitoring-Your-Jobs-and-the-Job-Queue-cont.">Monitoring Your Jobs and the Job Queue cont.<a class="anchor-link" href="#Monitoring-Your-Jobs-and-the-Job-Queue-cont.">&#182;</a></h2><h3 id="Getting-detailed-information-of-your-running/pending-job">Getting detailed information of your running/pending job<a class="anchor-link" href="#Getting-detailed-information-of-your-running/pending-job">&#182;</a></h3><p><code>scontrol show job &lt;jobid&gt;</code></p>
+<p>Useful if you care only about a specific job.</p>
+<p>It's very useful when debugging jobs.</p>
+<p>A lot of information without needing lots of input.</p>
+
+</div>
+</div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[30]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-bash"><pre><span></span>scontrol show job <span class="m">8516360</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>JobId=8516360 JobName=Extr16S23S
+   UserId=woodruff.c(2317) GroupId=allstaff(10908) MCS_label=N/A
+   Priority=324 Nice=0 Account=wehi QOS=normal
+   JobState=RUNNING Reason=None Dependency=(null)
+   Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   RunTime=00:21:53 TimeLimit=2-00:00:00 TimeMin=N/A
+   SubmitTime=2022-10-20T11:37:49 EligibleTime=2022-10-20T11:37:49
+   AccrueTime=2022-10-20T11:37:49
+   StartTime=2022-10-20T14:28:03 EndTime=2022-10-22T14:28:03 Deadline=N/A
+   PreemptEligibleTime=2022-10-20T14:28:03 PreemptTime=None
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2022-10-20T14:28:03 Scheduler=Main
+   Partition=regular AllocNode:Sid=vc7-shared:12938
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=med-n24
+   BatchHost=med-n24
+   NumNodes=1 NumCPUs=32 NumTasks=32 CPUs/Task=1 ReqB:S:C:T=0:0:*:*
+   TRES=cpu=32,mem=48G,node=1,billing=128
+   Socks/Node=* NtasksPerN:B:S:C=32:0:*:* CoreSpec=*
+   MinCPUsNode=32 MinMemoryNode=48G MinTmpDiskNode=0
+   Features=(null) DelayBoot=00:00:00
+   OverSubscribe=OK Contiguous=0 Licenses=(null) Network=(null)
+   Command=/stornext/Bioinf/data/lab_speed/cjw/microbiome/scripts/shell/ribosomal_16S23S_extract_singlespecies.sh Staphylococcus epidermidis 32
+   WorkDir=/stornext/Bioinf/data/lab_speed/cjw/microbiome/scripts/shell
+   StdErr=/stornext/Bioinf/data/lab_speed/cjw/microbiome/scripts/shell/slurm-8516360.out
+   StdIn=/dev/null
+   StdOut=/stornext/Bioinf/data/lab_speed/cjw/microbiome/scripts/shell/slurm-8516360.out
+   Power=
+   MailUser=woodruff.c@wehi.edu.au MailType=END,FAIL
+   
+
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div></div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Monitoring-Your-jobs-and-the-Job-Queue-cont.">Monitoring Your jobs and the Job Queue cont.<a class="anchor-link" href="#Monitoring-Your-jobs-and-the-Job-Queue-cont.">&#182;</a></h2><h3 id="Monitoring-the-cluster">Monitoring the cluster<a class="anchor-link" href="#Monitoring-the-cluster">&#182;</a></h3><p>Being able to understand the state of the cluster, can help understand why your job might be waiting.</p>
+<p>Or, you can use the information to your advantage to reduce wait times.</p>
+<p>To view the state of the cluster, we're going to use the <code>sinfo</code> command.</p>
+
+</div>
+</div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[31]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-bash"><pre><span></span>sinfo
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>PARTITION        AVAIL  TIMELIMIT  NODES  STATE NODELIST
+interactive         up 1-00:00:00      4    mix med-n03,sml-n[01-03]
+interactive         up 1-00:00:00      1  alloc med-n02
+interactive         up 1-00:00:00      1   idle med-n01
+regular*            up 2-00:00:00     42    mix lrg-n[02-03],med-n[03-05,07-09,12-13,18,20-23,25-27,29-30],sml-n[02-20,22-24]
+regular*            up 2-00:00:00     13  alloc lrg-n04,med-n[02,06,10-11,14-17,19,24,28],sml-n21
+long                up 14-00:00:0     40    mix med-n[03-05,07-09,12-13,18,20-23,25-27,29-30],sml-n[02-20,22-24]
+long                up 14-00:00:0     12  alloc med-n[02,06,10-11,14-17,19,24,28],sml-n21
+bigmem              up 2-00:00:00      3    mix lrg-n02,med-n[03-04]
+bigmem              up 2-00:00:00      1  alloc med-n02
+bigmem              up 2-00:00:00      1   idle lrg-n01
+gpuq                up 2-00:00:00      1    mix gpu-p100-n01
+gpuq                up 2-00:00:00     11   idle gpu-a30-n[01-07],gpu-p100-n[02-05]
+gpuq_interactive    up   12:00:00      1    mix gpu-a10-n01
+gpuq_large          up 2-00:00:00      3   idle gpu-a100-n[01-03]
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div></div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Monitoring-Your-Jobs-and-the-Job-Queue-cont.">Monitoring Your Jobs and the Job Queue cont.<a class="anchor-link" href="#Monitoring-Your-Jobs-and-the-Job-Queue-cont.">&#182;</a></h2><p>Like <code>squeue</code>, we can augment <code>sinfo</code>'s behaviour with options.</p>
+<p>A very useful option is to use the <code>-N</code> (N for nodes) option.</p>
+
+</div>
+</div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[33]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-bash"><pre><span></span>sinfo -N <span class="p">|</span> head -n <span class="m">5</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>NODELIST      NODES        PARTITION STATE 
+gpu-a10-n01       1 gpuq_interactive mix   
+gpu-a30-n01       1             gpuq idle  
+gpu-a30-n02       1             gpuq idle  
+gpu-a30-n03       1             gpuq idle  
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div></div><div class="fragment">
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>And now the data is now node-oriented instead of partition oriented!</p>
+
+</div>
+</div></div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Monitoring-Your-Jobs-and-the-Job-Queue-cont.">Monitoring Your Jobs and the Job Queue cont.<a class="anchor-link" href="#Monitoring-Your-Jobs-and-the-Job-Queue-cont.">&#182;</a></h2><p>But just knowing whether nodes are "idle", "mixed", or "allocated" is not the <em>most useful</em> information.</p>
+<p>We can add detail with formatting options as well.</p>
+<table>
+<thead><tr>
+<th style="text-align:left">CPU</th>
+<th style="text-align:left">memory</th>
+<th style="text-align:left">gres (GPU)</th>
+<th style="text-align:left">node state</th>
+<th style="text-align:left">time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>CPUsState</code></td>
+<td style="text-align:left"><code>FreeMem</code></td>
+<td style="text-align:left"><code>GresUsed</code></td>
+<td style="text-align:left"><code>StateCompact</code></td>
+<td style="text-align:left"><code>Time</code></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>AllocMem</code></td>
+<td style="text-align:left"><code>Gres</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"><code>Memory</code></td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>CPUs occupied/available/total: CPUsState</li>
+<li>memory occupied/available/total: FreeMem, AllocMem, Memory</li>
+<li>gres (GPU) occupied/available: GresUsed, Gres</li>
+<li>State of the node (e.g. whether the node is down): StateCompact</li>
+<li>Max time: Time</li>
+</ul>
+
+</div>
+</div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[37]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-bash"><pre><span></span>sinfo -NO nodelist:13,partition:13,cpusstate:13,freemem:8,memory:8,gresused,gres:11,statecompact:8,time <span class="p">|</span> head -n <span class="m">5</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>NODELIST     PARTITION    CPUS(A/I/O/T)FREE_MEMMEMORY  GRES_USED           GRES       STATE   TIMELIMIT           
+gpu-a10-n01  gpuq_interact2/46/0/48    71517   257417  gpu:A10:1(IDX:0)    gpu:A10:4  mix     12:00:00            
+gpu-a30-n01  gpuq         0/96/0/96    462381  511362  gpu:A30:0(IDX:N/A)  gpu:A30:4  idle    2-00:00:00          
+gpu-a30-n02  gpuq         0/96/0/96    401605  511362  gpu:A30:0(IDX:N/A)  gpu:A30:4  idle    2-00:00:00          
+gpu-a30-n03  gpuq         0/96/0/96    362552  511362  gpu:A30:0(IDX:N/A)  gpu:A30:4  idle    2-00:00:00          
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div></div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Monitoring-Your-Jobs-and-the-Job-Queue-cont.">Monitoring Your Jobs and the Job Queue cont.<a class="anchor-link" href="#Monitoring-Your-Jobs-and-the-Job-Queue-cont.">&#182;</a></h2><p>For newer Slurm versions, the GUI tool <code>sview</code> is an option</p>
+<p>It's functionality is currently a little less limited and not customizable, but also an option.</p>
+
+</div>
+</div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[36]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-bash"><pre><span></span>sview
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>
+(sview:4266): Gtk-<span class="ansi-yellow-intense-fg ansi-bold">WARNING</span> **: <span class="ansi-blue-fg">16:00:18.949</span>: cannot open display: 
 </pre>
 </div>
 </div>
@@ -15120,79 +15101,12 @@ Tue Oct 18 09:35:35 2022
 
 </div>
 
-</div></section><section>
+</div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>But what if we want <em>even more</em> information?</p>
-<p>We have to make use of the formatting options!</p>
-
-<pre><code>$ squeue --Format \&lt;column1\&gt;,\&lt;column2\&gt;,...</code></pre>
-<p>OR use environment variables</p>
-
-<pre><code># Resource related
-NumCPUs
-NumNodes
-minmemory
-tres-alloc
-
-# time related
-starttime
-submittime
-pendingtime
-timelimit
-timeleft
-timeused
-
-# Job Metadata
-JobId
-name
-partition
-priority
-reasonlist
-workdir
-state</code></pre>
-
+<h2 id="Basic-Profiling-of-Your-Jobs">Basic Profiling of Your Jobs<a class="anchor-link" href="#Basic-Profiling-of-Your-Jobs">&#182;</a></h2>
 </div>
-</div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span>squeue --Format<span class="o">=</span>jobid,name,partition,priority,reasonlist,state,tres-alloc:60,submittime:25,starttime:25,timelimit,timeleft
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>
-<span class="ansi-cyan-fg">  Cell </span><span class="ansi-green-fg">In [2], line 1</span>
-<span class="ansi-red-fg">    squeue --Format=jobid,name,partition,priority,reasonlist,state,tres-alloc:60,submittime:25,starttime:25,timelimit,timeleft</span>
-    ^
-<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> cannot assign to expression here. Maybe you meant &#39;==&#39; instead of &#39;=&#39;?
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div></div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div></div></section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
@@ -15238,30 +15152,6 @@ state</code></pre>
 
 </div>
 
-</div></div></section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><code>sinfo</code> shows the status of the cluster</p>
-
-<pre><code>$ sinfo
-PARTITION        AVAIL  TIMELIMIT  NODES  STATE NODELIST
-interactive         up 1-00:00:00      5    mix med-n[02-03],sml-n[01-03]
-interactive         up 1-00:00:00      1   idle med-n01
-regular*            up 2-00:00:00     30    mix med-n[02-03,07,09,11-14,17],sml-n[02-05,07-20,22-24]
-regular*            up 2-00:00:00      4  alloc med-n[15-16],sml-n[06,21]
-regular*            up 2-00:00:00     21   idle lrg-n[02-04],med-n[04-06,08,10,18-30]
-long                up 14-00:00:0     30    mix med-n[02-03,07,09,11-14,17],sml-n[02-05,07-20,22-24]
-long                up 14-00:00:0      4  alloc med-n[15-16],sml-n[06,21]
-long                up 14-00:00:0     18   idle med-n[04-06,08,10,18-30]
-bigmem              up 2-00:00:00      2    mix med-n[02-03]
-bigmem              up 2-00:00:00      3   idle lrg-n[01-02],med-n04
-gpuq                up 2-00:00:00     12   idle gpu-a30-n[01-07],gpu-p100-n[01-05]
-gpuq_interactive    up   12:00:00      1    mix gpu-a10-n01
-gpuq_large          up 2-00:00:00      3   idle gpu-a100-n[01-03]</code></pre>
-
-<pre><code>sview</code></pre>
-
-</div>
 </div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
