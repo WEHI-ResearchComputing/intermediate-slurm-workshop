@@ -14385,8 +14385,10 @@ div.jp-OutputPrompt {
 <div class="slides"><section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Intermediate-Slurm-on-Milton">Intermediate Slurm on Milton<a class="anchor-link" href="#Intermediate-Slurm-on-Milton">&#182;</a></h1><h3 id="Delivered-by-WEHI-Research-Computing-Platform">Delivered by WEHI Research Computing Platform<a class="anchor-link" href="#Delivered-by-WEHI-Research-Computing-Platform">&#182;</a></h3><p><pre>Edward Yang    Michael Milton    Julie Iskander</pre><br /></p>
-<p><img src="static/1200px-Slurm_logo.svg.png" alt="Slurm" width="100"/><img src="static/milton.png" alt="Milton Mascot" width="100"/><img src="static/WEHI_RGB_logo.png" alt="WEHI logo" width="200"/></p>
+<h1 id="Intermediate-Slurm-on-Milton">Intermediate Slurm on Milton<a class="anchor-link" href="#Intermediate-Slurm-on-Milton">&#182;</a></h1><h3 id="Delivered-by-WEHI-Research-Computing-Platform">Delivered by WEHI Research Computing Platform<a class="anchor-link" href="#Delivered-by-WEHI-Research-Computing-Platform">&#182;</a></h3><p><pre>Edward Yang    Michael Milton    Julie Iskander</pre><br></p>
+<p><img src="static/1200px-Slurm_logo.svg.png" alt="Slurm" width="100"/>
+<img src="static/milton.png" alt="Milton Mascot" width="100"/>
+<img src="static/WEHI_RGB_logo.png" alt="WEHI logo" width="200"/></p>
 
 </div>
 </div></section></section><section><section>
@@ -14505,9 +14507,25 @@ rap.wehi.edu.au</p>
 </div></section></section><section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Laying-the-Groundwork:-Nodes,-Tasks-and-Other-Slurm-Stuff">Laying the Groundwork: Nodes, Tasks and Other Slurm Stuff<a class="anchor-link" href="#Laying-the-Groundwork:-Nodes,-Tasks-and-Other-Slurm-Stuff">&#182;</a></h2><h3 id="What-are-Nodes?">What are Nodes?<a class="anchor-link" href="#What-are-Nodes?">&#182;</a></h3><p>Nodes are essentially standalone computers with their own CPU cores, RAM, local storage, and maybe GPUs.</p>
-<p>HPC clusters (or just clusters) will consist of multiple nodes connected together through a (sometimes fast) network.</p>
-<p>Nodes cannot collaborate on problems unless they are running a programmed designed that way. An analogy would be like trying to issue commands from your PC, but trying to use your colleagues CPUs. It's possible, but needs a special program/protocol to do so!</p>
+<h2 id="Laying-the-Groundwork:-Nodes,-Tasks-and-Other-Slurm-Stuff">Laying the Groundwork: Nodes, Tasks and Other Slurm Stuff<a class="anchor-link" href="#Laying-the-Groundwork:-Nodes,-Tasks-and-Other-Slurm-Stuff">&#182;</a></h2><h3 id="What-are-Nodes?">What are Nodes?<a class="anchor-link" href="#What-are-Nodes?">&#182;</a></h3><p>Nodes are essentially standalone computers with their own CPU cores, RAM, local storage, and maybe GPUs. 
+<br>
+<img src="static/node-diagram.png" alt="Node diagram" width="400"></p>
+
+</div>
+</div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Laying-the-Groundwork:-Nodes,-Tasks-and-Other-Slurm-Stuff-cont.">Laying the Groundwork: Nodes, Tasks and Other Slurm Stuff cont.<a class="anchor-link" href="#Laying-the-Groundwork:-Nodes,-Tasks-and-Other-Slurm-Stuff-cont.">&#182;</a></h2><p>HPC clusters (or just clusters) will consist of multiple nodes connected together through a (sometimes fast) network. <br>
+<img src="static/cluster-diagram.png" alt="Cluster diagram" width="400">
+<img src="static/shared-storage-diagram.png" alt="Shared storage diagram" width="400"></p>
+
+</div>
+</div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Laying-the-Groundwork:-Nodes,-Tasks-and-Other-Slurm-Stuff-cont.">Laying the Groundwork: Nodes, Tasks and Other Slurm Stuff cont.<a class="anchor-link" href="#Laying-the-Groundwork:-Nodes,-Tasks-and-Other-Slurm-Stuff-cont.">&#182;</a></h2><p>Nodes cannot collaborate on problems unless they are running a programmed designed that way.</p>
+<p>It's like clicking your mouse on your PC, and expecting the click to register on a colleague's PC.</p>
+<p>It's possible, but needs a special program/protocol to do so!</p>
 <p>Most programs in bioinformatics, health sciences, and statistics (that I know of) aren't setup to have multiple nodes cooperate. Notable exceptions are Tensorflow and Py-Torch, Relion, and Gromacs.</p>
 
 </div>
@@ -14515,6 +14533,7 @@ rap.wehi.edu.au</p>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Laying-the-Groundwork:-Nodes,-Tasks-and-Other-Slurm-Stuff-cont.">Laying the Groundwork: Nodes, Tasks and Other Slurm Stuff cont.<a class="anchor-link" href="#Laying-the-Groundwork:-Nodes,-Tasks-and-Other-Slurm-Stuff-cont.">&#182;</a></h2><h3 id="What-are-tasks?">What are tasks?<a class="anchor-link" href="#What-are-tasks?">&#182;</a></h3><p>Tasks are a collection of resources (CPU cores, GPUs) expected to perform the same "task", or used by a single program e.g., via threads, Python multiprocessing, or OpenMP.</p>
+<p><img src="static/tasks-diagram1.png" alt="Tasks diagram" width="400"></p>
 
 </div>
 </div><div class="fragment">
