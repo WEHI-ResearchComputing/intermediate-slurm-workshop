@@ -14532,46 +14532,94 @@ rap.wehi.edu.au</p>
 </div></section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Laying-the-Groundwork:-Nodes,-Tasks-and-Other-Slurm-Stuff-cont.">Laying the Groundwork: Nodes, Tasks and Other Slurm Stuff cont.<a class="anchor-link" href="#Laying-the-Groundwork:-Nodes,-Tasks-and-Other-Slurm-Stuff-cont.">&#182;</a></h2><h3 id="What-are-tasks?">What are tasks?<a class="anchor-link" href="#What-are-tasks?">&#182;</a></h3><p>Tasks are a collection of resources (CPU cores, GPUs) expected to perform the same "task", or used by a single program e.g., via threads, Python multiprocessing, or OpenMP.</p>
-<p><img src="static/tasks-diagram1.png" alt="Tasks diagram" width="400"></p>
+<h2 id="Laying-the-Groundwork:-Nodes,-Tasks-and-Other-Slurm-Stuff-cont.">Laying the Groundwork: Nodes, Tasks and Other Slurm Stuff cont.<a class="anchor-link" href="#Laying-the-Groundwork:-Nodes,-Tasks-and-Other-Slurm-Stuff-cont.">&#182;</a></h2><h3 id="So-why-are-tasks-useful/important?">So why are tasks useful/important?<a class="anchor-link" href="#So-why-are-tasks-useful/important?">&#182;</a></h3><p>The Slurm task model was created with "traditional HPC" in mind</p>
+<ul>
+<li><code>srun</code> creates <code>ntasks</code> instances of a program which coordinate using MPI</li>
+<li>Some applications are designed to use multiple cores per task (hybrid MPI-OpenMP) for performance.</li>
+</ul>
 
 </div>
 </div><div class="fragment">
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>A task can only be given resources co-located on a node. Multiple tasks requested by <code>sbatch</code> or <code>salloc</code> can be spread across multiple nodes (unless <code>--nodes=</code> is specified).</p>
+<p>But this isn't a parallel programming workshop!</p>
 
 </div>
 </div></div><div class="fragment">
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><code>srun</code> will use the number of tasks requested by <code>salloc</code> or <code>sbatch</code> to run <code>ntasks</code> instances of the same command/script/program. e.g.,</p>
-<p><code>srun echo hello world</code> will run <code>echo</code> equal to the number of tasks requested.</p>
-
-</div>
-</div></div><div class="fragment">
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>This was designed with "traditional" HPC in mind, where multiple instances of the same program would be created, and these instanced could cooperate (thanks to MPI).</p>
+<p>Tasks are not as relevant in bioinformatics, but Slurm nevertheless uses tasks for accounting/profiling purposes.</p>
+<p>Therefore, it's useful to have an understanding of tasks in order to interpret some of Slurm's job accounting/profiling outputs.</p>
 
 </div>
 </div></div></section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="why-ntasks-and--cpus-per-task-then?">why <code>ntasks</code> and  <code>cpus-per-task</code> then?<a class="anchor-link" href="#why-ntasks-and--cpus-per-task-then?">&#182;</a></h3><p>This is because some "traditional" HPC would use multiprocessing (usually through OpenMP) where each program instance could utilize multiple cores.</p>
+<h2 id="Laying-the-Groundwork:-Nodes,-Tasks-and-Other-Slurm-Stuff-cont.">Laying the Groundwork: Nodes, Tasks and Other Slurm Stuff cont.<a class="anchor-link" href="#Laying-the-Groundwork:-Nodes,-Tasks-and-Other-Slurm-Stuff-cont.">&#182;</a></h2><h3 id="What-are-tasks?">What are tasks?<a class="anchor-link" href="#What-are-tasks?">&#182;</a></h3><p>Tasks are a collection of resources (CPU cores, GPUs) expected to perform the same "task", or used by a single program e.g., via threads, Python multiprocessing, or OpenMP.
+<img src="static/tasks-diagram1.png" alt="Tasks diagram" width="400"></p>
+
+</div>
+</div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Laying-the-Groundwork:-Nodes,-Tasks-and-Other-Slurm-Stuff-cont.">Laying the Groundwork: Nodes, Tasks and Other Slurm Stuff cont.<a class="anchor-link" href="#Laying-the-Groundwork:-Nodes,-Tasks-and-Other-Slurm-Stuff-cont.">&#182;</a></h2><p>A task can only be given resources co-located on a node. <br>
+Multiple tasks requested by <code>sbatch</code> or <code>salloc</code> can be spread across multiple nodes (unless <code>--nodes=</code> is specified).</p>
 
 </div>
 </div><div class="fragment">
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Most data science, statistics, bionformatics, health-science work will use <code>--ntasks=1</code>, and using <code>--cpus-per-task</code> . If you see/hear anything to do with "distributed" or MPI (e.g. distributed ML), you may want to change that.</p>
+<p>For example, if we have two nodes with 4 CPU cores each:</p>
+<p>requesting 1 task and 8 cpus-per-task won't work.</p>
+<p>But requesting 2 tasks and 4 cpus-per-task will!</p>
 
 </div>
-</div></div></section></section><section><section>
+</div></div><div class="fragment">
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Monitoring-Your-Jobs-and-the-Job-Queue">Monitoring Your Jobs and the Job Queue<a class="anchor-link" href="#Monitoring-Your-Jobs-and-the-Job-Queue">&#182;</a></h2><p><em>knowledge is power</em></p>
-<h3 id="Building-on-the-basics:-squeue">Building on the basics: <code>squeue</code><a class="anchor-link" href="#Building-on-the-basics:-squeue">&#182;</a></h3><p><code>squeue</code> shows everyone's job in the queue (passing <code>-u &lt;username&gt;</code>) shows only <code>&lt;username&gt;</code>'s jobs.</p>
+<p>Most data science, statistics, bionformatics, health-science work will use <code>--ntasks=1</code>, and using <code>--cpus-per-task</code>.</p>
+<p>If you see/hear anything to do with "distributed" or MPI (e.g. distributed ML), you may want to change these options.</p>
+
+</div>
+</div></div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Laying-the-Groundwork:-Nodes,-Tasks-and-Other-Slurm-Stuff-cont.">Laying the Groundwork: Nodes, Tasks and Other Slurm Stuff cont.<a class="anchor-link" href="#Laying-the-Groundwork:-Nodes,-Tasks-and-Other-Slurm-Stuff-cont.">&#182;</a></h2><h3 id="A-review-of-launching-jobs-(srun-vs-sbatch-and-salloc)">A review of launching jobs (<code>srun</code> vs <code>sbatch</code> and <code>salloc</code>)<a class="anchor-link" href="#A-review-of-launching-jobs-(srun-vs-sbatch-and-salloc)">&#182;</a></h3><p>TL;DR:</p>
+<ul>
+<li><code>sbatch</code> requests resources for use with a script</li>
+<li><code>salloc</code> requests resources to be used interactively</li>
+<li><code>srun</code> runs programs/scripts using resources requested by <code>sbatch</code> and <code>salloc</code><ul>
+<li>When run "inside" a job, <code>srun</code> will use the resources requested in the parent request</li>
+<li>When run "outside" a job, <code>srun</code> will need to be passed the resource request e.g. <code>--ntasks</code></li>
+</ul>
+</li>
+</ul>
+<p><code>srun</code> will execute <code>ntasks</code> instances of the same command/script/program. e.g.,</p>
+<p><code>srun echo hello world</code> will run <code>echo</code> equal to the number of tasks requested.</p>
+
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Monitoring-Your-Jobs-and-the-Job-Queue">Monitoring Your Jobs and the Job Queue<a class="anchor-link" href="#Monitoring-Your-Jobs-and-the-Job-Queue">&#182;</a></h2><p>Slurm has lots of data on your jobs and the cluster!</p>
+<p>Primary utilities discussed in this section:</p>
+<ul>
+<li><code>squeue</code>    <em>Live</em> Job queue data</li>
+<li><code>scontrol</code>  <em>Live</em> Singular job data</li>
+<li><code>sinfo</code>     <em>Live</em> Cluster data</li>
+</ul>
+<p>This section show you how to get more detailed information about:</p>
+<ul>
+<li>the queue,</li>
+<li>other jobs in the queue, and</li>
+<li>the state/business of the cluster.</li>
+</ul>
+
+</div>
+</div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Monitoring-Your-Jobs-and-the-Job-Queue-cont.">Monitoring Your Jobs and the Job Queue cont.<a class="anchor-link" href="#Monitoring-Your-Jobs-and-the-Job-Queue-cont.">&#182;</a></h2><h3 id="Building-on-the-basics:-squeue">Building on the basics: <code>squeue</code><a class="anchor-link" href="#Building-on-the-basics:-squeue">&#182;</a></h3><p><code>squeue</code> shows everyone's job in the queue (passing <code>-u &lt;username&gt;</code>) shows only <code>&lt;username&gt;</code>'s jobs.</p>
 
 </div>
 </div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -14613,16 +14661,16 @@ rap.wehi.edu.au</p>
 
 </div>
 
-</div></div><div class="fragment">
+</div></div></section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Getting a bit more: <code>squeue --long</code> makes things more legible adds the "time_limit" column.</p>
+<h2 id="Monitoring-Your-Jobs-and-the-Job-Queue-cont.">Monitoring Your Jobs and the Job Queue cont.<a class="anchor-link" href="#Monitoring-Your-Jobs-and-the-Job-Queue-cont.">&#182;</a></h2><p>Getting a bit more: <code>squeue --long</code> makes things more legible adds the "time_limit" column.</p>
 
 </div>
-</div></div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-bash"><pre><span></span>squeue --long <span class="p">|</span> head -n <span class="m">5</span>
@@ -14645,11 +14693,11 @@ rap.wehi.edu.au</p>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Thu Oct 20 12:07:43 2022
+<pre>Thu Nov 03 12:57:40 2022
              JOBID PARTITION     NAME     USER    STATE       TIME TIME_LIMI  NODES NODELIST(REASON)
-           8516030      gpuq interact bollands  RUNNING    1:30:13   8:00:00      1 gpu-p100-n01
-           8515707      gpuq cryospar cryospar  RUNNING    3:05:01 2-00:00:00      1 gpu-p100-n01
-           8511988 interacti sys/dash    yan.a  RUNNING   20:15:55 1-00:00:00      1 sml-n03
+           8649808 gpuq_larg   AF2.2g iskander  RUNNING    4:34:07 5-00:00:00      1 gpu-a100-n02
+           8649805 gpuq_larg   AF2.2g iskander  RUNNING 1-03:47:14 5-00:00:00      1 gpu-a100-n01
+           8664606 interacti sys/dash     wu.y  RUNNING    2:12:59   8:00:00      1 med-n01
 </pre>
 </div>
 </div>
@@ -15030,10 +15078,10 @@ gpu-a30-n03       1             gpuq idle
 </div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[37]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span>sinfo -NO nodelist:13,partition:13,cpusstate:13,freemem:8,memory:8,gresused,gres:11,statecompact:8,time <span class="p">|</span> head -n <span class="m">5</span>
+<div class=" highlight hl-bash"><pre><span></span>sinfo -NO nodelist:11<span class="s1">&#39; &#39;</span>,partition:10<span class="s1">&#39; &#39;</span>,cpusstate:13<span class="s1">&#39; &#39;</span>,freemem:8<span class="s1">&#39; &#39;</span>,memory:8<span class="s1">&#39; &#39;</span>,gresused,gres:11,statecompact:8,time <span class="p">|</span> head -n <span class="m">5</span>
 </pre></div>
 
      </div>
@@ -15053,11 +15101,11 @@ gpu-a30-n03       1             gpuq idle
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>NODELIST     PARTITION    CPUS(A/I/O/T)FREE_MEMMEMORY  GRES_USED           GRES       STATE   TIMELIMIT           
-gpu-a10-n01  gpuq_interact2/46/0/48    71517   257417  gpu:A10:1(IDX:0)    gpu:A10:4  mix     12:00:00            
-gpu-a30-n01  gpuq         0/96/0/96    462381  511362  gpu:A30:0(IDX:N/A)  gpu:A30:4  idle    2-00:00:00          
-gpu-a30-n02  gpuq         0/96/0/96    401605  511362  gpu:A30:0(IDX:N/A)  gpu:A30:4  idle    2-00:00:00          
-gpu-a30-n03  gpuq         0/96/0/96    362552  511362  gpu:A30:0(IDX:N/A)  gpu:A30:4  idle    2-00:00:00          
+<pre>NODELIST    PARTITION  CPUS(A/I/O/T) FREE_MEM MEMORY   GRES_USED           GRES       STATE   TIMELIMIT           
+gpu-a10-n01 gpuq_inter 0/48/0/48     163914   257417   gpu:A10:0(IDX:N/A)  gpu:A10:4  idle    12:00:00            
+gpu-a30-n01 gpuq       0/96/0/96     450325   511362   gpu:A30:0(IDX:N/A)  gpu:A30:4  idle    2-00:00:00          
+gpu-a30-n02 gpuq       0/96/0/96     436435   511362   gpu:A30:0(IDX:N/A)  gpu:A30:4  idle    2-00:00:00          
+gpu-a30-n03 gpuq       0/96/0/96     497816   511362   gpu:A30:0(IDX:N/A)  gpu:A30:4  idle    2-00:00:00          
 </pre>
 </div>
 </div>
@@ -15069,8 +15117,9 @@ gpu-a30-n03  gpuq         0/96/0/96    362552  511362  gpu:A30:0(IDX:N/A)  gpu:A
 </div></div></section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Monitoring-Your-Jobs-and-the-Job-Queue-cont.">Monitoring Your Jobs and the Job Queue cont.<a class="anchor-link" href="#Monitoring-Your-Jobs-and-the-Job-Queue-cont.">&#182;</a></h2><p>For newer Slurm versions, the GUI tool <code>sview</code> is an option</p>
-<p>It's functionality is currently a little less limited and not customizable, but also an option.</p>
+<h2 id="Monitoring-Your-Jobs-and-the-Job-Queue-cont.">Monitoring Your Jobs and the Job Queue cont.<a class="anchor-link" href="#Monitoring-Your-Jobs-and-the-Job-Queue-cont.">&#182;</a></h2><p>For newer Slurm versions, the GUI tool <code>sview</code> is an option.</p>
+<p>It's functionality is currently a little limited and not customizable.</p>
+<p>Requires and X11 server running on your computer (Windows: MobaXTerm, Mac: XQuartz).</p>
 
 </div>
 </div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -15120,125 +15169,316 @@ gpu-a30-n03  gpuq         0/96/0/96    362552  511362  gpu:A30:0(IDX:N/A)  gpu:A
 
 </div>
 
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Basic-Profiling-of-Your-Jobs">Basic Profiling of Your Jobs<a class="anchor-link" href="#Basic-Profiling-of-Your-Jobs">&#182;</a></h2>
-</div>
-</div></div></section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span>sacct -S -E -o jobid,jobname,alloctres,elapsed,end,start,exitcode,ncpus,nodelist,nnodes,submit,
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>bash: sacct: command not found
-</pre>
-</div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre></pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span>sinfo -NO nodehost,partition,statecompact,available,cpusstate,allocmem,memory,gres,gresused
-scontrol show job &lt;job id&gt;
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>bash: sinfo: command not found
-bash: syntax error near unexpected token `newline&#39;
-</pre>
-</div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre></pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
 </div></div></section></section><section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Basic-Job-Profiling">Basic Job Profiling<a class="anchor-link" href="#Basic-Job-Profiling">&#182;</a></h2><p>ssh node</p>
-<p>nvidia-smi</p>
-<p>htop (and useful features)</p>
-<p>seff</p>
-<p>dcgmstats</p>
+<h2 id="Basic-Job-Monitoring-and-Profiling">Basic Job Monitoring and Profiling<a class="anchor-link" href="#Basic-Job-Monitoring-and-Profiling">&#182;</a></h2><p>This section will look at using command-line tools to obtain visibility into how your job is performing.</p>
+<table>
+<thead><tr>
+<th>type of data</th>
+<th>Live</th>
+<th>Historical</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>good for</strong></td>
+<td>debugging</td>
+<td>debugging</td>
+</tr>
+<tr>
+<td></td>
+<td>evaluating utilization</td>
+<td>profiling</td>
+</tr>
+<tr>
+<td><strong>drawbacks</strong></td>
+<td>uses system tools, so requires some system understanding</td>
+<td>Only provides data when jobs are completed</td>
+</tr>
+</tbody>
+</table>
+<p>We will look at:</p>
+<ul>
+<li><code>htop</code> for <em>Live</em> Process activity on nodes</li>
+<li><code>nvidia-smi</code> for <em>Live</em> GPU activity on nodes</li>
+<li><code>seff</code> for <em>Historical</em> job CPU and memory usage data</li>
+<li><code>dcgmstats</code> for <em>Historical</em> job GPU usage data</li>
+<li><code>sacct</code> for <em>Historical</em> job data</li>
+</ul>
 
 </div>
-</div></section></section><section><section>
+</div></section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Sbatch-Scripting-Features">Sbatch Scripting Features<a class="anchor-link" href="#Sbatch-Scripting-Features">&#182;</a></h2><p>We're going to start with a simple R script submitted by wrapper sbatch script:</p>
+<h2 id="Basic-Job-Monitoring-and-Profiling-cont.">Basic Job Monitoring and Profiling cont.<a class="anchor-link" href="#Basic-Job-Monitoring-and-Profiling-cont.">&#182;</a></h2><h3 id="Live-monitoring-of-jobs">Live monitoring of jobs<a class="anchor-link" href="#Live-monitoring-of-jobs">&#182;</a></h3><p>A limitation of Slurm is that it doesn't offer tools that provide up-to-date data of a job as it is running.</p>
+<p>Instead, to obtain insight into current activity of a job, we can use general system tools.</p>
+<p>The main obstacle with using these tools is that they do not use job IDs - you must match jobs with <em>processes</em> on a node.</p>
+<p>To do this, you use <code>squeue</code> to find which node(s) your job(s) are running on.<br>
+Then, you will use the <code>ssh</code> command to move to that node and monitor the system's activity.</p>
+<p>Another "drawback" is that some of the data may require a bit of operating system understanding to interpret.</p>
+<p>But nevertheless, the tools are robust and useful in helping us understand how our jobs are performing.</p>
+
+</div>
+</div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Basic-Job-Monitoring-and-Profiling-cont.">Basic Job Monitoring and Profiling cont.<a class="anchor-link" href="#Basic-Job-Monitoring-and-Profiling-cont.">&#182;</a></h2><h4 id="Live-monitoring:-CPU,-memory,-IO-activity">Live monitoring: CPU, memory, IO activity<a class="anchor-link" href="#Live-monitoring:-CPU,-memory,-IO-activity">&#182;</a></h4><p><code>htop</code> is a utility often installed on HPC clusters for monitoring processes.</p>
+<p>It can be used to look at the CPU, memory, and IO utilization of a running process.</p>
+<p>It's not a Slurm tool, but is nevertheless very useful in monitoring jobs' activity and diagnosing issues.</p>
+<p>To show only your processes, execute <code>htop -u $USER</code></p>
+
+</div>
+</div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Basic-Job-Monitoring-and-Profiling-cont.">Basic Job Monitoring and Profiling cont.<a class="anchor-link" href="#Basic-Job-Monitoring-and-Profiling-cont.">&#182;</a></h2><p><code>htop</code> shows the individual CPU core utilization on the top, followed by memory utilization and some misc. information.</p>
+<p>The bottom panel shows the process information</p>
+<p>Relevant Headings:</p>
+<ul>
+<li>USER: User that owns the process</li>
+<li>PID: Process ID</li>
+<li>%CPU: % of a single core that a process is using e.g. 400% means process is using 4 cores</li>
+<li>%MEM: % of node's total RAM that process is using</li>
+<li>VSZ: "Virtual" memory (bytes) - the memory a process "thinks" it's using</li>
+<li>RSS: "Resident" memory (bytes) - the actual physical memory a process is using</li>
+</ul>
+
+</div>
+</div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Basic-Job-Monitoring-and-Profiling-cont.">Basic Job Monitoring and Profiling cont.<a class="anchor-link" href="#Basic-Job-Monitoring-and-Profiling-cont.">&#182;</a></h2><p>You can organize the process information into "trees" by pressing <code>F5</code></p>
+<p>You can add IO information by</p>
+<ol>
+<li>Press <code>F2</code> (Setup)</li>
+<li>Press down three times to move the cursor to "Columns" and press right twice</li>
+<li>The cursor should now be in "Available Columns". Scroll down to <code>IO_READ_RATE</code> and press enter</li>
+<li>Scroll down to <code>IO_WRITE_RATE</code> and press enter</li>
+<li>Press <code>F10</code> to exit. 
+You should now be able to see read/write rates for processes that you have permissions for.</li>
+</ol>
 
 </div>
 </div><div class="fragment">
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><strong>Tips</strong>:</p>
+<ul>
+<li><code>htop</code> configurations are saved in <code>~/.config/htop</code>. Delete this folder to reset your <code>htop</code> conifguration.</li>
+<li><code>ps</code> and <code>pidstat</code> are useful alternatives which can be incorporated into scripts.</li>
+<li>Some systems may not have <code>htop</code> installed, in which case <code>top</code> can be used instead</li>
+</ul>
+
+</div>
+</div></div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Basic-Job-Monitoring-and-Profiling-cont.">Basic Job Monitoring and Profiling cont.<a class="anchor-link" href="#Basic-Job-Monitoring-and-Profiling-cont.">&#182;</a></h2><h4 id="Live-monitoring:-GPU-activity">Live monitoring: GPU activity<a class="anchor-link" href="#Live-monitoring:-GPU-activity">&#182;</a></h4><p>To monitor activity of Milton's NVIDIA GPUs, we must rely on NVIDIA's <code>nvidia-smi</code> tool.</p>
+<p><code>nvidia-smi</code> shows information about the memory and compute utilization, process allocation and other details.</p>
+
+</div>
+</div><div class="fragment">
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Like <code>htop</code>, <code>nvidia-smi</code> only provides information on processes running on a GPU. If your job is occupying an entire node and all its GPUs, it should be straightforward to determine which GPUs you've been allocated.</p>
+
+</div>
+</div></div><div class="fragment">
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>But if your job is sharing a node with other jobs, you might not know straight away which GPU your job has been allocated. You can determine this by</p>
+<ul>
+<li>inferring by the command being run on a GPU, or</li>
+<li>using <code>squeue</code> with extra formatting options as discussed previously.</li>
+</ul>
+
+</div>
+</div></div><div class="fragment">
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><strong>Note</strong>:
+This tool is available only on GPU nodes where the CUDA drivers are installed, so you must <code>ssh</code> to a <code>gpu</code> node to try it.</p>
+<p><strong>Tip</strong>: Combine <code>nvidia-smi</code> with <code>watch</code> to automatically update the output.</p>
+
+</div>
+</div></div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Basic-Job-Monitoring-and-Profiling-cont.">Basic Job Monitoring and Profiling cont.<a class="anchor-link" href="#Basic-Job-Monitoring-and-Profiling-cont.">&#182;</a></h2><h3 id="Historical-monitoring-of-jobs">Historical monitoring of jobs<a class="anchor-link" href="#Historical-monitoring-of-jobs">&#182;</a></h3><p>Slurm tools and plugins are generally easier to use because they provide information on a per-job basis, meaning there's no need to match processes with jobs like previously discussed.</p>
+<p><strong>Tip</strong>: <em>generally</em>, results are more reliable when executing commands with <code>srun</code>.</p>
+<p><strong>NOTE</strong>: <code>seff</code> results are most accurate when executing commands with <code>srun</code>.</p>
+
+</div>
+</div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Basic-Job-Monitoring-and-Profiling-cont.">Basic Job Monitoring and Profiling cont.<a class="anchor-link" href="#Basic-Job-Monitoring-and-Profiling-cont.">&#182;</a></h2><h4 id="Historical-data:-CPU-and-memory-utilization">Historical data: CPU and memory utilization<a class="anchor-link" href="#Historical-data:-CPU-and-memory-utilization">&#182;</a></h4><p>The <code>seff</code> command shows the memory and CPU utilization of a job that has <strong>ended</strong>`</p>
+
+</div>
+</div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[35]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-bash"><pre><span></span>seff <span class="m">8665813</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Job ID: 8665813
+Cluster: milton
+User/Group: yang.e/allstaff
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 4
+CPU Utilized: 00:09:04
+CPU Efficiency: 99.27% of 00:09:08 core-walltime
+Job Wall-clock time: 00:02:17
+Memory Utilized: 1.95 GB (estimated maximum)
+Memory Efficiency: 48.83% of 4.00 GB (1.00 GB/core)
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div></div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Basic-Job-Monitoring-and-Profiling-cont.">Basic Job Monitoring and Profiling cont.<a class="anchor-link" href="#Basic-Job-Monitoring-and-Profiling-cont.">&#182;</a></h2><p><code>sacct</code> is a general job history querying command-line tool that can provide lots of information about your <em>past</em> jobs.</p>
+<p><strong>Note</strong>: <code>sacct</code> data can take a few minutes to be updated, so is best for jobs that have just finished.</p>
+
+</div>
+</div><div class="fragment">
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>The following <code>sacct</code> command shows your job data for jobs since 1st Nov:</p>
+<ul>
+<li>Job steps' ID and name</li>
+<li>Requested resources</li>
+<li>Elapsed time</li>
+<li>The quantity of data written and read</li>
+<li>The quantity of virtual and resident memory used</li>
+</ul>
+
+</div>
+</div></div><div class="fragment">
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Note that the IO and memory values shown will be for the highest use <strong>task</strong>.</p>
+
+</div>
+</div></div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Basic-Job-Monitoring-and-Profiling-cont.">Basic Job Monitoring and Profiling cont.<a class="anchor-link" href="#Basic-Job-Monitoring-and-Profiling-cont.">&#182;</a></h2>
+</div>
+</div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-bash"><pre><span></span>sacct -S <span class="m">2022</span>-11-01 -o jobid%14<span class="s1">&#39; &#39;</span>,jobname,ncpus%5<span class="s1">&#39; &#39;</span>,nodelist,elapsed,state,maxdiskread,maxdiskwrite,maxvmsize,maxrss <span class="p">|</span> head -n5
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>         JobID    JobName NCPUS        NodeList    Elapsed      State  MaxDiskRead MaxDiskWrite  MaxVMSize     MaxRSS 
+-------------- ---------- ----- --------------- ---------- ---------- ------------ ------------ ---------- ---------- 
+       8664599 sys/dashb+     2         sml-n01 1-00:00:22    TIMEOUT                                                 
+ 8664599.batch      batch     2         sml-n01 1-00:00:23  CANCELLED      102.64M       15.11M   1760920K     99812K 
+8664599.extern     extern     2         sml-n01 1-00:00:22  COMPLETED        0.00M            0    146612K        68K 
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Basic-Job-Monitoring-and-Profiling-cont.">Basic Job Monitoring and Profiling cont.<a class="anchor-link" href="#Basic-Job-Monitoring-and-Profiling-cont.">&#182;</a></h2><h4 id="Historical-data:-GPU-activity">Historical data: GPU activity<a class="anchor-link" href="#Historical-data:-GPU-activity">&#182;</a></h4><p>By default, Slurm doesn't have the ability to produce stats on GPU usage.</p>
+<p>WEHI's ITS have implemented the <code>dcgmstats</code> NVIDIA Slurm plugin which can produce these summary stats.</p>
+<p>To use this plugin, pass the <code>--comment=dcgmstats</code> option to <code>srun</code>, <code>salloc</code>, or <code>sbatch</code>.</p>
+<p>If your job requested at least one GPU, an extra output file will be generated in the working directory called <code>dcgm-stats-&lt;jobid&gt;.out</code>. The output file will contain a table for each GPU requested by the job.</p>
+
+</div>
+</div></div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Basic-Job-Monitoring-and-Profiling-cont.">Basic Job Monitoring and Profiling cont.<a class="anchor-link" href="#Basic-Job-Monitoring-and-Profiling-cont.">&#182;</a></h2><h3 id="Summary">Summary<a class="anchor-link" href="#Summary">&#182;</a></h3><ul>
+<li>live monitoring:<ul>
+<li><code>htop</code> for CPU, memory, and IO data (requires configuration)</li>
+<li><code>nvidia-smi</code> for GPU activity</li>
+<li>both require matching jobs to hardware and running processes</li>
+</ul>
+</li>
+<li>historical monitoring:<ul>
+<li><code>seff</code> command for simple CPU and memory utilization data for one job</li>
+<li><code>sacct</code> command for memory and IO data for multiple past jobs</li>
+<li><code>dcgmstats</code> Slurm plugin for GPU stats for a single Slurm job</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Sbatch-Scripting-Features">Sbatch Scripting Features<a class="anchor-link" href="#Sbatch-Scripting-Features">&#182;</a></h2><p>Sbatch scripts have a lot of nice features that extend beyond requesting resources. This section will look at some of these useful features which you can use in your workflows.</p>
+<p>This section will look at:</p>
+<ul>
+<li>getting email notifications</li>
+<li>changing <code>stdout</code> and <code>stderr</code> files</li>
+<li>controlling how jobs depend on each other</li>
+<li>making use of job environments and interpreters (e.g. python or R)</li>
+<li>submitting <code>sbatch</code> scripts without a script</li>
+</ul>
+<p>We're going to start with a simple R script submitted by wrapper sbatch script:</p>
+
+</div>
+</div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <div class="highlight"><pre><span></span><span class="c1">## matmul.rscript</span>
+<span class="c1"># multiplies two matrices together and prints how long it takes.</span>
 
 <span class="nf">print</span><span class="p">(</span><span class="s">&quot;starting the matmul R script!&quot;</span><span class="p">)</span>
 <span class="n">nrows</span> <span class="o">=</span> <span class="m">1e3</span>
@@ -15259,16 +15499,17 @@ bash: syntax error near unexpected token `newline&#39;
 </pre></div>
 
 </div>
-</div></div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div></section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-bash"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="c1"># Example sbatch script running Rscript</span>
 <span class="c1"># Does a matmul</span>
 <span class="c1"># rev0</span>
+
 <span class="c1">#SBATCH --mem=8G</span>
 <span class="c1">#SBATCH --cpus-per-task=2</span>
 <span class="c1">#SBATCH --time=1-</span>
@@ -15298,11 +15539,71 @@ Rscript matmul.rscript
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>bash: module: command not found
-Fatal error: cannot open file &#39;matmul.rscript&#39;: No such file or directory
+<pre>[1] &#34;starting the matmul R script!&#34;
+[1] &#34;elem: 1000*1000 = 1e+06&#34;
+Time difference of 0.06260109 secs
 </pre>
 </div>
 </div>
+
+</div>
+
+</div>
+
+</div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Sbatch-scripting-features-cont.">Sbatch scripting features cont.<a class="anchor-link" href="#Sbatch-scripting-features-cont.">&#182;</a></h2><h3 id="Email-notifications">Email notifications<a class="anchor-link" href="#Email-notifications">&#182;</a></h3><p>Getting notifications about the status of your Slurm jobs remove the need to <code>ssh</code> onto Milton and running <code>squeue</code> to get the status of your jobs.</p>
+<p>Instead, it will notify you when your job state has changed e.g. when it has started or ended.</p>
+<p>To enable this behaviour, add the following options to your job scripts:</p>
+
+<pre><code>--mail-user=me@gmail.com
+--mail-type=ALL</code></pre>
+<p>This sends emails to <code>me@gmail.com</code> when the job state changes.</p>
+<p>If you only want to know when your job goes through certain states, e.g. if it fails or is pre-empted but not when it starts or finishes:</p>
+<ul>
+<li>BEGIN: job starts</li>
+<li>END: job finishes successfully</li>
+<li>FAIL: job fails</li>
+<li>TIME_LIMIT: job reaches time limit</li>
+<li>TIME_LIMIT_50/80/90: job reaches 50%/80%/90% of time limit</li>
+</ul>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-bash"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1"># Example sbatch script running Rscript</span>
+<span class="c1"># Does a matmul</span>
+<span class="c1"># rev1 - email notifications</span>
+
+<span class="c1">#SBATCH --mem=8G</span>
+<span class="c1">#SBATCH --cpus-per-task=2</span>
+<span class="c1">#SBATCH --time=1-</span>
+<span class="c1">#SBATCH --nodes=1</span>
+<span class="c1">#SBATCH --ntasks=1</span>
+<span class="c1">#SBATCH --mail-user=yang.e@wehi.edu.au</span>
+<span class="c1">#SBATCH --mail-type=ALL</span>
+
+<span class="c1"># loading module for R</span>
+module load R/openBLAS/4.2.1
+
+Rscript matmul.rscript
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
 
 <div class="jp-OutputArea-child">
 
@@ -15310,8 +15611,11 @@ Fatal error: cannot open file &#39;matmul.rscript&#39;: No such file or director
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre></pre>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>[1] &#34;starting the matmul R script!&#34;
+[1] &#34;elem: 1000*1000 = 1e+06&#34;
+Time difference of 0.06343555 secs
+</pre>
 </div>
 </div>
 
@@ -15319,19 +15623,6 @@ Fatal error: cannot open file &#39;matmul.rscript&#39;: No such file or director
 
 </div>
 
-</div></div></section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Sbatch-scripting-features-cont.">Sbatch scripting features cont.<a class="anchor-link" href="#Sbatch-scripting-features-cont.">&#182;</a></h2><p>Sbatch options extend beyond just specifying resources. There are ways you can utulise <code>sbatch</code> features to make your life easier or aid in automation:</p>
-<ul>
-<li>redirecting where your output and error messages go</li>
-<li>changing directory</li>
-<li>notifying you of when jobs have started, ended</li>
-<li>Submitting Python and R scripts</li>
-<li>Making use of Slurm's environment variables</li>
-</ul>
-
-</div>
 </div></section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
@@ -15343,26 +15634,62 @@ ls: cannot access dir-that-doesnt-exist: No such file or directory <span class="
 <div class="highlight"><pre><span></span>$ ls ~
 bin cache Desktop Downloads ... <span class="c1"># this is a stdout output!</span>
 </pre></div>
-<h3 id="redirecting-output-and-stderr">redirecting output and stderr<a class="anchor-link" href="#redirecting-output-and-stderr">&#182;</a></h3><p>Sbatch will automatically redirect <code>stout</code> and <code>stdir</code> to a single file called <code>slurm-jobid.out</code>. But this may not be useful. Maybe you want to seperate any "output" from "errors". This can be done with <code>--output</code> and <code>--error</code></p>
 
 </div>
-</div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Sbatch-scripting-features-cont.">Sbatch scripting features cont.<a class="anchor-link" href="#Sbatch-scripting-features-cont.">&#182;</a></h2><h3 id="Redirecting-job's-stderr-and-stdout">Redirecting job's <code>stderr</code> and <code>stdout</code><a class="anchor-link" href="#Redirecting-job's-stderr-and-stdout">&#182;</a></h3><p>By default:</p>
+<ul>
+<li>job's working directory is the directory you submitted from</li>
+<li><code>stdout</code> is directed to <code>slurm-&lt;jobid&gt;.out</code> in the job's working directory</li>
+<li><code>stderr</code> is directed to wherever <code>stdout</code> is directed to</li>
+</ul>
+
+</div>
+</div><div class="fragment">
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Redirect <code>stderr</code> and <code>stdout</code> with <code>--error</code> and <code>--output</code> options. They work with both relative and absolute paths, e.g.</p>
+
+<pre><code>--error=/dev/null
+--output=path/to/output.out</code></pre>
+<p>where paths are resolved relative to the job's working directory.</p>
+
+</div>
+</div></div><div class="fragment">
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Variables can be used, like:</p>
+<ul>
+<li><code>%j</code>: job ID</li>
+<li><code>%x</code>: job name</li>
+<li><code>%u</code>: username</li>
+<li><code>%t</code>: task ID i.e., seperate file per task</li>
+<li><code>%N</code>: node name i.e., seperate file per nodes in job</li>
+</ul>
+
+</div>
+</div></div></section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-bash"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="c1"># Example sbatch script running Rscript</span>
 <span class="c1"># Does a matmul</span>
-<span class="c1"># rev1-stderrstdout</span>
+<span class="c1"># rev2 - added --output and --error options</span>
+
 <span class="c1">#SBATCH --mem=8G</span>
 <span class="c1">#SBATCH --cpus-per-task=2</span>
 <span class="c1">#SBATCH --time=1-</span>
 <span class="c1">#SBATCH --nodes=1</span>
 <span class="c1">#SBATCH --ntasks=1</span>
-<span class="c1">#SBATCH --output=results/Rmatmul-%j.out # the %j is interpreted as the job id!</span>
-<span class="c1">#SBATCH --error=logs-debug/Rmatmul-%j.err</span>
+<span class="c1">#SBATCH --mail-user=yang.e@wehi.edu.au</span>
+<span class="c1">#SBATCH --mail-type=ALL</span>
+<span class="c1">#SBATCH --output=logs/matmul-%j.out</span>
+<span class="c1">#SBATCH --error=logs-debug/matmul-%j.err</span>
 
 <span class="c1"># loading module for R</span>
 module load R/openBLAS/4.2.1
@@ -15387,11 +15714,68 @@ Rscript matmul.rscript
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>bash: module: command not found
-Fatal error: cannot open file &#39;matmul.rscript&#39;: No such file or directory
+<pre>[1] &#34;starting the matmul R script!&#34;
+[1] &#34;elem: 1000*1000 = 1e+06&#34;
+Time difference of 0.06532145 secs
 </pre>
 </div>
 </div>
+
+</div>
+
+</div>
+
+</div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Sbatch-scripting-features-cont.">Sbatch scripting features cont.<a class="anchor-link" href="#Sbatch-scripting-features-cont.">&#182;</a></h2><h3 id="Using-job-dependancies">Using job dependancies<a class="anchor-link" href="#Using-job-dependancies">&#182;</a></h3><p>Slurm allows for submitted jobs to wait for another job to start or finish before beginning. While probably not as effective as workflow managers like Nextflow, Slurm's job dependencies can still be useful for simple workflows.</p>
+<p>Make a job dependant on another by passing the <code>--dependency</code> option with one of the following values:</p>
+<ul>
+<li><code>afterok:jobid1:jobid2...</code> waits for <code>jobid1</code>, <code>jobid2</code> ... to complete successfully</li>
+<li><code>afterany:jobid1:jobid2...</code> "                              " to finish (fail, complete, cancelled)</li>
+<li><code>after:jobid1:jobid2...</code> "                                 " to start or are cancelled.</li>
+</ul>
+<p>e.g. <code>--dependency=afterok:12345678</code> will make the job wait for job <code>12345678</code> to complete successfully before starting.</p>
+
+</div>
+</div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Sbatch-scripting-features-cont.">Sbatch scripting features cont.<a class="anchor-link" href="#Sbatch-scripting-features-cont.">&#182;</a></h2><h3 id="Making-use-of-job-environments-and-interpreters">Making use of job environments and interpreters<a class="anchor-link" href="#Making-use-of-job-environments-and-interpreters">&#182;</a></h3><p>By default, when you submit a Slurm job, Slurm copies all the environment variables in your environment and adds some extra for the job to use.</p>
+
+</div>
+</div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-bash"><pre><span></span><span class="nb">export</span> <span class="nv">VAR1</span><span class="o">=</span><span class="s2">&quot;here is some text&quot;</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div></div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[30]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-bash"><pre><span></span>cat demo-scripts/env-vars1.sbatch
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
 
 <div class="jp-OutputArea-child">
 
@@ -15399,8 +15783,11 @@ Fatal error: cannot open file &#39;matmul.rscript&#39;: No such file or director
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre></pre>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>#!/bin/bash
+
+echo $VAR1
+</pre>
 </div>
 </div>
 
@@ -15408,42 +15795,95 @@ Fatal error: cannot open file &#39;matmul.rscript&#39;: No such file or director
 
 </div>
 
+</div></div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[37]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-bash"><pre><span></span>sbatch demo-scripts/env-vars1.sbatch
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Submitted batch job 8681656
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div></div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[38]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-bash"><pre><span></span>cat slurm-8681656.out
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>here is some text
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div></div><div class="fragment">
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><strong>Note</strong>: For reproducibility reasons, a Slurm script that relies on environment variables can be submitted inside a wrapper script which first exports the relevant variable.</p>
+
+</div>
 </div></div></section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="changing-directory">changing directory<a class="anchor-link" href="#changing-directory">&#182;</a></h3><p>The <code>sbatch</code> option <code>--chdir</code> can make life a bit easier for many reasons:</p>
-<ul>
-<li>your script may be "far" from your data e.g a seperate scripts folder</li>
-<li>you may be processing data in different places</li>
-</ul>
-<p>A typical approach would be to either modify the <code>--output</code> and <code>--error</code> locations and use <code>cd</code>.</p>
-<p><code>--chdir</code> changes the working directory <em>which includes where stderr and stdout goes</em></p>
-<p>This can be more concise and avoids having to change multiple paths.</p>
+<h2 id="Sbatch-scripting-features-cont.">Sbatch scripting features cont.<a class="anchor-link" href="#Sbatch-scripting-features-cont.">&#182;</a></h2><p>Alternatively, you can use the <code>--export</code> option which allows you to set specific values</p>
 
 </div>
 </div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[48]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span><span class="ch">#!/bin/bash</span>
-<span class="c1"># Example sbatch script running Rscript</span>
-<span class="c1"># Does a matmul</span>
-<span class="c1"># rev2-chdir</span>
-<span class="c1">#SBATCH --mem=8G</span>
-<span class="c1">#SBATCH --cpus-per-task=2</span>
-<span class="c1">#SBATCH --time=1-</span>
-<span class="c1">#SBATCH --nodes=1</span>
-<span class="c1">#SBATCH --ntasks=1</span>
-<span class="c1">#SBATCH --output=Rmatmul-%j.out</span>
-<span class="c1">#SBATCH --error=Rmatmul-%j.err</span>
-<span class="c1">#SBATCH --chdir=/vast/scratch/yang.e/slurm-demo/test1</span>
-
-<span class="c1"># loading module for R</span>
-module load R/openBLAS/4.2.1
-
-Rscript matmul.rscript
+<div class=" highlight hl-bash"><pre><span></span><span class="nb">echo</span> <span class="nv">$VAR1</span>
 </pre></div>
 
      </div>
@@ -15463,11 +15903,33 @@ Rscript matmul.rscript
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>bash: module: command not found
-Fatal error: cannot open file &#39;matmul.rscript&#39;: No such file or directory
+<pre>here is some text
 </pre>
 </div>
 </div>
+
+</div>
+
+</div>
+
+</div></div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[49]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-bash"><pre><span></span>sbatch --export<span class="o">=</span><span class="nv">VAR1</span><span class="o">=</span><span class="s2">&quot;this is some different text&quot;</span> demo-scripts/env-vars1.sbatch
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
 
 <div class="jp-OutputArea-child">
 
@@ -15475,8 +15937,9 @@ Fatal error: cannot open file &#39;matmul.rscript&#39;: No such file or director
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre></pre>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Submitted batch job 8681761
+</pre>
 </div>
 </div>
 
@@ -15484,7 +15947,391 @@ Fatal error: cannot open file &#39;matmul.rscript&#39;: No such file or director
 
 </div>
 
-</div></div></section></section>
+</div></div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[50]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-bash"><pre><span></span>cat slurm-8681761.out
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>this is some different text
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div></div><div class="fragment">
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>This feature is especially useful when submitting jobs inside wrapper scripts.</p>
+<p>You can also use the <code>--export-file</code> option to specify a file with a list of <code>export VAR=value</code> pairs that you wish the script to use.</p>
+
+</div>
+</div></div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Sbatch-scripting-features-cont.">Sbatch scripting features cont.<a class="anchor-link" href="#Sbatch-scripting-features-cont.">&#182;</a></h2><p>Slurm also adds environment variables that enable job parameters use</p>
+
+</div>
+</div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[45]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-bash"><pre><span></span>cat demo-scripts/env-vars2.sbatch
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>#!/bin/bash
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=2
+
+echo I am running on ${SLURM_NODELIST}
+echo with ${SLURM_NTASKS} tasks
+echo and ${SLURM_CPUS_PER_TASK} CPUs per task
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div></div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[46]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-bash"><pre><span></span>sbatch demo-scripts/env-vars2.sbatch
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Submitted batch job 8681710
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div></div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[47]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-bash"><pre><span></span>cat slurm-8681710.out
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>I am running on sml-n03
+with 1 tasks
+and 2 CPUs per task
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div></div><div class="fragment">
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>These Slurm environment variables make it easy to supply parallelisation parameters to a program e.g. specifying number of threads.</p>
+
+</div>
+</div></div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Sbatch-scripting-features-cont.">Sbatch scripting features cont.<a class="anchor-link" href="#Sbatch-scripting-features-cont.">&#182;</a></h2><h3 id="Submitting-scripts-with-different-interpreters">Submitting scripts with different interpreters<a class="anchor-link" href="#Submitting-scripts-with-different-interpreters">&#182;</a></h3><p>Typically scripts submitted by <code>sbatch</code> use the <code>bash</code> or <code>sh</code> interpreter (e.g. <code>#!/bin/bash</code>), but it may be more convenient to use a different interpreter.</p>
+
+</div>
+</div><div class="fragment">
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>You can do this by changing the "hash bang" statement at the top of the script. To demonstrate this, we can take our original R matmul script, and add a "hash bang" statement to the top.</p>
+
+</div>
+</div></div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[52]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-bash"><pre><span></span>cat demo-scripts/matmul-interpreter1.rscript <span class="p">|</span> head -n <span class="m">5</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>#!/usr/bin/env Rscript
+## matmul.rscript
+
+print(&#34;starting the matmul R script!&#34;)
+nrows = 1e3
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div></div><div class="fragment">
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>The statement in the above looks for the Rscript in your current environment</p>
+
+</div>
+</div></div><div class="fragment">
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Alternatively, you can specify the absolute path to the interpreter.</p>
+<p>e.g. <code>#!/stornext/System/data/apps/R/openBLAS/R-4.2.1/lib64/R/bin/Rscript</code></p>
+
+</div>
+</div></div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Sbatch-scripting-features-cont.">Sbatch scripting features cont.<a class="anchor-link" href="#Sbatch-scripting-features-cont.">&#182;</a></h2><p>Changing the interpreter still allows you to access the extra Slurm environment variables, but in a way appropriate to the interpreter.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[63]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-bash"><pre><span></span>cat demo-scripts/matmul-interpreter2.rscript
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>#!/usr/bin/env Rscript
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=2
+#SBATCH --mem=4G
+
+## matmul.rscript
+
+print(&#34;starting the matmul R script!&#34;)
+paste(&#34;using&#34;, Sys.getenv(&#34;SLURM_NTASKS&#34;), &#34;tasks&#34;)
+paste(&#34;and&#34;, Sys.getenv(&#34;SLURM_CPUS_PER_TASK&#34;), &#34;CPUs per task&#34;)
+nrows = 1e3
+print(paste0(&#34;elem: &#34;, nrows, &#34;*&#34;, nrows, &#34; = &#34;, nrows*nrows))
+
+# generating matrices
+M &lt;- matrix(rnorm(nrows*nrows),nrow=nrows)
+N &lt;- matrix(rnorm(nrows*nrows),nrow=nrows)
+
+# start matmul
+start.time &lt;- Sys.time()
+invisible(M %*% N)
+end.time &lt;- Sys.time()
+
+# Getting final time and writing to stdout
+elapsed.time &lt;- difftime(time1=end.time, time2=start.time, units=&#34;secs&#34;)
+print(elapsed.time)
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div></section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[59]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-bash"><pre><span></span>sbatch demo-scripts/matmul-interpreter2.rscript
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Submitted batch job 8682077
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[62]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-bash"><pre><span></span>cat slurm-8682077.out
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>[1] &#34;starting the matmul R script!&#34;
+[1] &#34;using 1 tasks&#34;
+[1] &#34;and 2 CPUs per task&#34;
+[1] &#34;elem: 1000*1000 = 1e+06&#34;
+Time difference of 0.06340098 secs
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-bash"><pre><span></span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div></section></section>
 </div>
 </div>
 </body>
