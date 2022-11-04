@@ -1,0 +1,19 @@
+#!/usr/bin/env Rscript
+## matmul.rscript
+
+print("starting the matmul R script!")
+nrows = 1e3
+print(paste0("elem: ", nrows, "*", nrows, " = ", nrows*nrows))
+
+# generating matrices
+M <- matrix(rnorm(nrows*nrows),nrow=nrows)
+N <- matrix(rnorm(nrows*nrows),nrow=nrows)
+
+# start matmul
+start.time <- Sys.time()
+invisible(M %*% N)
+end.time <- Sys.time()
+
+# Getting final time and writing to stdout
+elapsed.time <- difftime(time1=end.time, time2=start.time, units="secs")
+print(elapsed.time)
