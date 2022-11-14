@@ -14570,13 +14570,13 @@ div.jp-OutputPrompt {
 </div></section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<div style="text-align: right">Nodes, Tasks and Other Slurm Stuff 4</div><p><img src="static/simple-cluster-diagram-sbatchnodes2script.png" alt="Example sbatch command" width="800"></p>
+<div style="text-align: right">Nodes, Tasks and Other Slurm Stuff 6</div><p><img src="static/simple-cluster-diagram-sbatchnodes2script.png" alt="Example sbatch command" width="800"></p>
 
 </div>
 </div></section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<div style="text-align: right">Nodes, Tasks and Other Slurm Stuff 6</div><p>Nodes cannot collaborate on problems unless they are running a program designed that way.</p>
+<div style="text-align: right">Nodes, Tasks and Other Slurm Stuff 7</div><p>Nodes cannot collaborate on problems unless they are running a program designed that way.</p>
 
 </div>
 </div><div class="fragment">
@@ -14601,7 +14601,14 @@ div.jp-OutputPrompt {
 </div></div></section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<div style="text-align: right">Nodes, Tasks and Other Slurm Stuff 7</div><h3 id="So-why-are-tasks-useful/important?">So why are tasks useful/important?<a class="anchor-link" href="#So-why-are-tasks-useful/important?">&#182;</a></h3><p>The Slurm task model was created with "traditional HPC" in mind</p>
+<div style="text-align: right">Nodes, Tasks and Other Slurm Stuff 8</div><h3 id="What-are-tasks?">What are tasks?<a class="anchor-link" href="#What-are-tasks?">&#182;</a></h3><p>Tasks are a collection of resources (CPU cores, GPUs) expected to perform the same "task", or used by a single program e.g., via threads, Python multiprocessing, or OpenMP.
+<img src="static/tasks-diagram1.png" alt="Tasks diagram" width="400"></p>
+
+</div>
+</div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div style="text-align: right">Nodes, Tasks and Other Slurm Stuff 9</div><h3 id="So-why-are-tasks-useful/important?">So why are tasks useful/important?<a class="anchor-link" href="#So-why-are-tasks-useful/important?">&#182;</a></h3><p>The Slurm task model was created with "traditional HPC" in mind</p>
 <ul>
 <li><code>srun</code> creates <code>ntasks</code> instances of a program which coordinate using MPI</li>
 <li>Some applications are designed to use multiple cores per task (hybrid MPI-OpenMP) for performance.</li>
@@ -14618,14 +14625,7 @@ div.jp-OutputPrompt {
 </div></div></section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<div style="text-align: right">Nodes, Tasks and Other Slurm Stuff 8</div><h3 id="What-are-tasks?">What are tasks?<a class="anchor-link" href="#What-are-tasks?">&#182;</a></h3><p>Tasks are a collection of resources (CPU cores, GPUs) expected to perform the same "task", or used by a single program e.g., via threads, Python multiprocessing, or OpenMP.
-<img src="static/tasks-diagram1.png" alt="Tasks diagram" width="400"></p>
-
-</div>
-</div></section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<div style="text-align: right">Nodes, Tasks and Other Slurm Stuff 9</div><p>A task can only be given resources co-located on a node. <br>
+<div style="text-align: right">Nodes, Tasks and Other Slurm Stuff 10</div><p>A task can only be given resources co-located on a node. <br>
 Multiple tasks requested by <code>sbatch</code> or <code>salloc</code> can be spread across multiple nodes (unless <code>--nodes=</code> is specified).</p>
 
 </div>
@@ -14647,7 +14647,7 @@ Multiple tasks requested by <code>sbatch</code> or <code>salloc</code> can be sp
 </div></div></section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<div style="text-align: right">Nodes, Tasks and Other Slurm Stuff 10</div><h3 id="A-review-of-launching-jobs-(srun-vs-sbatch-and-salloc)">A review of launching jobs (<code>srun</code> vs <code>sbatch</code> and <code>salloc</code>)<a class="anchor-link" href="#A-review-of-launching-jobs-(srun-vs-sbatch-and-salloc)">&#182;</a></h3><p>TL;DR:</p>
+<div style="text-align: right">Nodes, Tasks and Other Slurm Stuff 11</div><h3 id="A-review-of-launching-jobs-(srun-vs-sbatch-and-salloc)">A review of launching jobs (<code>srun</code> vs <code>sbatch</code> and <code>salloc</code>)<a class="anchor-link" href="#A-review-of-launching-jobs-(srun-vs-sbatch-and-salloc)">&#182;</a></h3><p>TL;DR:</p>
 <ul>
 <li><code>sbatch</code> requests resources for use with a script</li>
 <li><code>salloc</code> requests resources to be used interactively</li>
