@@ -14394,16 +14394,14 @@ div.jp-OutputPrompt {
 </div></section></section><section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="[OPTIONAL-SLIDE]-Self-Introductions!">[OPTIONAL SLIDE] Self Introductions!<a class="anchor-link" href="#[OPTIONAL-SLIDE]-Self-Introductions!">&#182;</a></h2><h3 id="Me">Me<a class="anchor-link" href="#Me">&#182;</a></h3><ul>
-<li>Civil Engineer by training</li>
-<li>HPC by interest</li>
-<li>Specialise in parallel programming (MPI, OpenMP, CUDA)</li>
-<li>I use HPC to simulate fluid and granular flows</li>
-<li>Historically flat-white person, but moving to long Macs</li>
-</ul>
-<h2 id="How-about-you?">How about you?<a class="anchor-link" href="#How-about-you?">&#182;</a></h2><ul>
-<li>name</li>
-<li>How you use Milton's HPC</li>
+<h1 id="Acknowledgment-of-Country">Acknowledgment of Country<a class="anchor-link" href="#Acknowledgment-of-Country">&#182;</a></h1>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="[OPTIONAL-SLIDE]-Self-Introductions!">[OPTIONAL SLIDE] Self Introductions!<a class="anchor-link" href="#[OPTIONAL-SLIDE]-Self-Introductions!">&#182;</a></h2><ul>
+<li>Your Name</li>
+<li>What you're using Milton's HPC for</li>
 <li>Your coffee/tea order</li>
 </ul>
 
@@ -14450,7 +14448,7 @@ div.jp-OutputPrompt {
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <div style="text-align: right">Background</div><h3 id="Expected-understanding">Expected understanding<a class="anchor-link" href="#Expected-understanding">&#182;</a></h3><ul>
-<li><p>Understanding of "resources" concept: CPUs, RAM/memory, Nodes, gres (GPUs)</p>
+<li><p>Awareness of "resources": CPUs, RAM/memory, Nodes, gres (GPUs)</p>
 </li>
 <li><p>Have used job submission commands</p>
 <ul>
@@ -14480,15 +14478,15 @@ div.jp-OutputPrompt {
 <h2 id="Agenda-for-Today">Agenda for Today<a class="anchor-link" href="#Agenda-for-Today">&#182;</a></h2><ol>
 <li><p><span style="color: blue">Introduction & Housekeeping</span></p>
 </li>
-<li><p>Lunch</p>
-</li>
 <li><p>Laying the groundwork: nodes, tasks and other Slurm terminology</p>
 </li>
-<li><p>Understanding your jobs and the job queue</p>
+<li><p>Lunch (30mins)</p>
 </li>
-<li><p>Basic job profiling</p>
+<li><p>Understanding your jobs and the job queue + 5min break</p>
 </li>
-<li><p>Slurm scripting features</p>
+<li><p>Basic job profiling + 5min break</p>
+</li>
+<li><p>Slurm scripting features + 5min break</p>
 </li>
 <li><p>Embarrasingly parallel workflows with Slurm job arrays</p>
 </li>
@@ -14511,25 +14509,17 @@ div.jp-OutputPrompt {
 <li>Put your hand up whenever you have a question or have an issue running things</li>
 <li>Questions in the chat are welcome and will be addressed by helpers</li>
 </ul>
-<p>Material is available here:</p>
+<p>Material is available here: <a href="https://github.com/WEHI-ResearchComputing/intermediate-slurm-workshop">https://github.com/WEHI-ResearchComputing/intermediate-slurm-workshop</a></p>
 <ul>
-<li>slides: <a href="https://wehi-researchcomputing.github.io/intermediate-slurm-workshop">https://wehi-researchcomputing.github.io/intermediate-slurm-workshop</a></li>
-<li>material: <a href="https://github.com/WEHI-ResearchComputing/intermediate-slurm-workshop">https://github.com/WEHI-ResearchComputing/intermediate-slurm-workshop</a><ul>
-<li>the base demo scripts are in <code>demo-script</code>. We will build on these during the workshop</li>
-</ul>
-</li>
+<li>Link to webpage in the README</li>
+<li>example scripts are in demo-scripts folder</li>
 </ul>
 
 </div>
 </div></section></section><section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="LUNCH">LUNCH<a class="anchor-link" href="#LUNCH">&#182;</a></h1>
-</div>
-</div></section></section><section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Laying-the-Groundwork:-Nodes,-Tasks-and-Other-Slurm-Stuff">Laying the Groundwork: Nodes, Tasks and Other Slurm Stuff<a class="anchor-link" href="#Laying-the-Groundwork:-Nodes,-Tasks-and-Other-Slurm-Stuff">&#182;</a></h2><p>Reviewing cluster concepts and briefly explaining <strong>tasks</strong> and <strong>job step</strong> Slurm concepts</p>
+<h2 id="Laying-the-Groundwork:-Nodes,-Tasks-and-Other-Slurm-Stuff">Laying the Groundwork: Nodes, Tasks and Other Slurm Stuff<a class="anchor-link" href="#Laying-the-Groundwork:-Nodes,-Tasks-and-Other-Slurm-Stuff">&#182;</a></h2><p>Reviewing cluster concepts and explaining <strong>tasks</strong>, <strong>job steps</strong>, and <strong>srun</strong> Slurm concepts</p>
 
 </div>
 </div></section><section>
@@ -14551,7 +14541,7 @@ div.jp-OutputPrompt {
 </div></section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<div style="text-align: right">Nodes, Tasks and Other Slurm Stuff 3</div><p>Typically, HPC is organised with login nodes, compute nodes, and some nodes that perform scheduling and storage duties.
+<div style="text-align: right">Nodes, Tasks and Other Slurm Stuff 3</div><p>Typically, HPC is organised with login nodes, compute nodes, and some nodes that perform scheduling and storage duties.<br>
 <img src="static/simple-cluster-diagram.png" alt="Example cluster architecture" width="800"></p>
 
 </div>
@@ -14564,19 +14554,62 @@ div.jp-OutputPrompt {
 </div></section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div style="text-align: right">Nodes, Tasks and Other Slurm Stuff 11</div><h3 id="A-review-of-launching-jobs-(srun-vs-sbatch-and-salloc)">A review of launching jobs (<code>srun</code> vs <code>sbatch</code> and <code>salloc</code>)<a class="anchor-link" href="#A-review-of-launching-jobs-(srun-vs-sbatch-and-salloc)">&#182;</a></h3><p>TL;DR:</p>
+<ul>
+<li><code>sbatch</code> requests resources for use with a script</li>
+<li><code>salloc</code> requests resources to be used interactively</li>
+<li><code>srun</code> runs programs/scripts using resources requested by <code>sbatch</code> and <code>salloc</code></li>
+</ul>
+<p><code>srun</code> will execute <code>ntasks</code> instances of the same command/script/program.</p>
+<p>Example:</p>
+<ol>
+<li>Try requesting an interactive session with <code>salloc --ntasks=4 --cpus-per-task=2 --nodes=4</code><ul>
+<li>Requests 4 tasks with 2 CPU cores each. Each task is located on a different node.</li>
+</ul>
+</li>
+<li>Then, execute the <code>hostname</code> command</li>
+<li>Try <code>hostname</code>, but with <code>srun</code> i.e. <code>srun hostname</code></li>
+</ol>
+
+</div>
+</div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <div style="text-align: right">Nodes, Tasks and Other Slurm Stuff 5</div><p><img src="static/simple-cluster-diagram-sbatchscript.png" alt="Example sbatch command" width="800"></p>
 
 </div>
 </div></section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<div style="text-align: right">Nodes, Tasks and Other Slurm Stuff 6</div><p><img src="static/simple-cluster-diagram-sbatchnodes2script.png" alt="Example sbatch command" width="800"></p>
+<div style="text-align: right">Nodes, Tasks and Other Slurm Stuff 6</div><p><img src="static/simple-cluster-diagram-sbatchnodes2script.png" alt="Example sbatch command" width="800"><br></p>
+<p>The <code>BatchHost</code> executes the commands in <code>script.sh</code></p>
 
 </div>
 </div></section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<div style="text-align: right">Nodes, Tasks and Other Slurm Stuff 7</div><p>Nodes cannot collaborate on problems unless they are running a program designed that way.</p>
+<div style="text-align: right">Nodes, Tasks and Other Slurm Stuff 6</div><h3 id="How-does-sbatch/salloc-and-srun-work-together?">How does <code>sbatch/salloc</code> and <code>srun</code> work together?<a class="anchor-link" href="#How-does-sbatch/salloc-and-srun-work-together?">&#182;</a></h3><p><img src="static/salloc-3node-diagram.png" alt="salloc requesting 3 nodes diagram" width="800"></p>
+
+</div>
+</div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div style="text-align: right">Nodes, Tasks and Other Slurm Stuff 6</div><p>A command/script/program will be executed on <code>BatchHost</code> <strong>only</strong></p>
+<p><img src="static/salloc-3node-diagram-hostname.png" alt="hostname command run on 3 nodes" width="800"></p>
+
+</div>
+</div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div style="text-align: right">Nodes, Tasks and Other Slurm Stuff 6</div><p>To use the other nodes, execute <code>srun hostname</code>.</p>
+<p><code>BatchHost</code> will send the <code>hostname</code> command to the remaining tasks to be executed as well.</p>
+<p><img src="static/salloc-3node-diagram-srunhostname.png" alt="hostname command run on 3 nodes" width="800"></p>
+
+</div>
+</div></section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div style="text-align: right">Nodes, Tasks and Other Slurm Stuff 7</div><h3 id="Requesting-multiple-nodes-doesn't-guarantee-they-will-all-be-used!">Requesting multiple nodes doesn't guarantee they will all be used!<a class="anchor-link" href="#Requesting-multiple-nodes-doesn't-guarantee-they-will-all-be-used!">&#182;</a></h3><p>Nodes cannot collaborate on problems unless they are running a program designed that way.</p>
 
 </div>
 </div><div class="fragment">
@@ -14601,7 +14634,8 @@ div.jp-OutputPrompt {
 </div></div></section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<div style="text-align: right">Nodes, Tasks and Other Slurm Stuff 8</div><h3 id="What-are-tasks?">What are tasks?<a class="anchor-link" href="#What-are-tasks?">&#182;</a></h3><p>Tasks are a collection of resources (CPU cores, GPUs) expected to perform the same "task", or used by a single program e.g., via threads, Python multiprocessing, or OpenMP.
+<div style="text-align: right">Nodes, Tasks and Other Slurm Stuff 8</div><h3 id="What-are-tasks?">What are tasks?<a class="anchor-link" href="#What-are-tasks?">&#182;</a></h3><p>Tasks are a collection of resources (CPU cores, GPUs) expected to perform the same "task", or used by a single program e.g., via threads, Python multiprocessing, or OpenMP.</p>
+<p>Tasks not equivalent to no. of CPUs!<br>
 <img src="static/tasks-diagram1.png" alt="Tasks diagram" width="400"></p>
 
 </div>
@@ -14644,24 +14678,23 @@ Multiple tasks requested by <code>sbatch</code> or <code>salloc</code> can be sp
 <p>If you see/hear anything to do with "distributed" or MPI (e.g. distributed ML), you may want to change these options.</p>
 
 </div>
-</div></div></section><section>
+</div></div><div class="fragment">
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<div style="text-align: right">Nodes, Tasks and Other Slurm Stuff 11</div><h3 id="A-review-of-launching-jobs-(srun-vs-sbatch-and-salloc)">A review of launching jobs (<code>srun</code> vs <code>sbatch</code> and <code>salloc</code>)<a class="anchor-link" href="#A-review-of-launching-jobs-(srun-vs-sbatch-and-salloc)">&#182;</a></h3><p>TL;DR:</p>
+<p>Example 2:
+Exit your <code>salloc</code> session and try running srun outside of <code>salloc</code>:</p>
 <ul>
-<li><code>sbatch</code> requests resources for use with a script</li>
-<li><code>salloc</code> requests resources to be used interactively</li>
-<li><code>srun</code> runs programs/scripts using resources requested by <code>sbatch</code> and <code>salloc</code><ul>
-<li>When run "inside" a job, <code>srun</code> will use the resources requested in the parent request</li>
-<li>When run "outside" a job, <code>srun</code> will need to be passed the resource request e.g. <code>--ntasks</code></li>
+<li><code>srun --ntasks=4 --cpus-per-task=2 --nodes=4 hostname</code></li>
 </ul>
-</li>
-</ul>
-<p><code>srun</code> will execute <code>ntasks</code> instances of the same command/script/program. e.g.,</p>
-<p><code>srun echo hello world</code> will run <code>echo</code> equal to the number of tasks requested.</p>
 
 </div>
-</div></section></section><section><section>
+</div></div><div class="fragment">
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>i.e. <code>srun</code> can also be used outside of <code>salloc</code> or <code>sbatch</code>, but the resource request must be explicit!</p>
+
+</div>
+</div></div></section></section><section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Monitoring-Your-Jobs-and-the-Job-Queue">Monitoring Your Jobs and the Job Queue<a class="anchor-link" href="#Monitoring-Your-Jobs-and-the-Job-Queue">&#182;</a></h2><p>Using Slurm and system tools to understand what your jobs are doing</p>
@@ -14731,14 +14764,7 @@ Slurm has lots of data on your jobs and the cluster!</p>
 
 </div>
 
-</div></div></section><section>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><div style="text-align: right">Monitoring Your Jobs and the Job Queue 3</div>
-Getting a bit more: <code>squeue --long</code> makes things more legible adds the "time_limit" column.</p>
-
-</div>
-</div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div></div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
